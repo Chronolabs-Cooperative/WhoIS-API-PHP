@@ -1,0 +1,11 @@
+## Redirect to Force Secure SSL - Uncomment by removing # when in use!!
+##
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} !^443$
+#RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L=301]
+##
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z0-9]{2})/(.*?)/(.*?).api 		index.php?version=$1&whois=$2&output=$3  	[L,NC,QSA]
