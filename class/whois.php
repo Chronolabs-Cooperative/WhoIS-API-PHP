@@ -316,43 +316,48 @@ class whois extends apiserver {
 		 */
 		if (parent::validateIPv4($ip))
 		{
-			$channel = API_HISTORY_IPV4;
+			$channel = 'ipv4';
 		} elseif(parent::validateIPv6($ip)) {
-			$channel = API_HISTORY_IPV6;
+			$channel = 'ipv6';
 		}
-		if (!is_dir($channel . DIRECTORY_SEPARATOR . $ip))
-			mkdir($channel . DIRECTORY_SEPARATOR . $ip, 0777, true);
-		$finger = sha1($txt = implode("\n", $this->_ip_whois[$ip]));
-		$found = false;
-		foreach(getCompleteHistoryListAsArray($channel . DIRECTORY_SEPARATOR . $ip) as $path => $values)
-			foreach($values as $sha1 => $data)
-				if ($sha1 = $finger)
-					$found = true;
-		if ($found == false)
+		
+		$whois = $emails = array();
+		$return = '%s';
+		foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
+		    
+		    $whois[$whoisserver][$ip] = parent::sortArray(parent::cleanEmails(parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output)), SORT_DESC);
+		    $emails[$whoisserver][$ip] = parent::sortArray(parent::cleanEmails(parent::extractEmails($result, $ret)), SORT_DESC);
+		}
+		$md5 = md5(json_encode(parent::sortArray($whois)));
+		$emailmd5 = md5(json_encode(parent::sortArray($whois)));
+		$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
+		list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
+		if ($count==0)
 		{
-			if (!is_dir($dir = $channel . DIRECTORY_SEPARATOR . $ip . DIRECTORY_SEPARATOR . date("Y") . DIRECTORY_SEPARATOR . date("m") . DIRECTORY_SEPARATOR . date("d") . DIRECTORY_SEPARATOR . date("h:i:s")))
-				mkdir($dir, 0777, true);
-			writeRawFile($dir . DIRECTORY_SEPARATOR . md5($ip).'.txt', $txt);
+		    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$ip'), '$channel', '$md5', '$emailmd5', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($emails)?$emails:array(), true))) . "', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($whois)?$whois:array(), true))) . "')";
+		    if (!$GLOBALS['APIDB']->queryF($sql))
+		        die("SQL Failed: $sql;");
 		}
 		
 		
 		switch($output) {
 			default:
 			case 'html':
+			    $ret = "RESULTS FOUNd: " . count($this->_ip_whois[$ip]);
+			    foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
+			        $ret .= "\n\n-------------\nLookup results for $ip from $whoisserver server:\n\n$result";
+			    }
+			    $ret = array('html' => $ret);
+			    break;
 			case 'raw':
-				$ret = "RESULTS FOUNd: " . count($this->_ip_whois[$ip]);
-				foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
-					$ret .= "\n\n-------------\nLookup results for $ip from $whoisserver server:\n\n$result";
-				}
-				break;
 			case 'json':
 			case 'xml':
 			case 'serial':
 				$ret = array();
 				foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
-					$ret[$whoisserver] = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);
-					$ret = parent::extractEmails($result, $ret);
-					$ret = parent::extractURLS($result, $ret);
+				    $ret[$ip][$whoisserver]['whois'] = parent::cleanEmails(parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output));
+				    $ret[$ip][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($result, $ret));
+				    $ret[$ip][$whoisserver]['urls'] = parent::extractURLS($result, $ret);
 				}
 				break;
 		}
@@ -407,36 +412,31 @@ class whois extends apiserver {
 				}
 			}
 			
-			/**
-			 * Records whois history file when required and has changed!
-			 */
-			if (!is_dir(API_HISTORY_TLDS . DIRECTORY_SEPARATOR . $domain))
-				mkdir(API_HISTORY_TLDS . DIRECTORY_SEPARATOR . $domain, 0777, true);
-			$finger = sha1($txt = implode("\n", $this->_domain_whois[$domain][$whoisserver]));
-			$found = false;
-			foreach(getCompleteHistoryListAsArray(API_HISTORY_TLDS . DIRECTORY_SEPARATOR . $domain) as $path => $values)
-				foreach($values as $sha1 => $data)
-					if ($sha1 = $finger)
-						$found = true;
-			if ($found == false)
+			$return = '%s';
+			$md5 = md5(json_encode($whois = parent::sortArray(parent::cleanEmails(parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output)), SORT_DESC)));
+			$emailmd5 = md5(json_encode($emails = parent::sortArray(parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret)), SORT_DESC)));	
+			$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
+			list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
+			if ($count==0)
 			{
-				if (!is_dir($dir = API_HISTORY_TLDS . DIRECTORY_SEPARATOR . $domain . DIRECTORY_SEPARATOR . date("Y") . DIRECTORY_SEPARATOR . date("m") . DIRECTORY_SEPARATOR . date("d") . DIRECTORY_SEPARATOR . date("h:i:s")))
-					mkdir($dir, 0777, true);
-				writeRawFile($dir . DIRECTORY_SEPARATOR . md5($domain).'.txt', $txt);
+			    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$domain'), 'realm', '$md5', '$emailmd5', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($emails)?$emails:array(), true))) . "', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($whois)?$whois:array(), true))) . "')";
+			    if (!$GLOBALS['APIDB']->queryF($sql))
+			        die("SQL Failed: $sql;");
 			}
 			
 			switch($output) {
 				default:
 				case 'html':
-				case 'raw':
-					$ret = "$domain domain lookup results from $whoisserver server:\n\n" .  $this->_domain_whois[$domain][$whoisserver];
+				    $ret = array('html'=>"$domain domain lookup results from $whoisserver server:\n\n" .  $this->_domain_whois[$domain][$whoisserver]);
 					break;
+				case 'raw':
 				case 'json':
 				case 'xml':
 				case 'serial':
-					$ret = parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output);
-					$ret = parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret);
-					$ret = parent::extractURLS($this->_domain_whois[$domain][$whoisserver], $ret);
+				    $ret = array();
+				    $ret[$domain][$whoisserver]['whois'] = parent::cleanEmails(parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output));
+				    $ret[$domain][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret));
+				    $ret[$domain][$whoisserver]['urls'] = parent::extractURLS($this->_domain_whois[$domain][$whoisserver], $ret);
 					break;
 			}
 			
@@ -444,9 +444,9 @@ class whois extends apiserver {
 		switch($output) {
 				default:
 				case 'html':
+				    return array('html'=>"Error: $domain could not be validated!");
+				    break;
 				case 'raw':
-					return "Error: $domain could not be validated!";
-					break;
 				case 'json':
 				case 'xml':
 				case 'serial':

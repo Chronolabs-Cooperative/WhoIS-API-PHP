@@ -223,7 +223,7 @@
        			$match[$id] = $result;
        		}
        		foreach($match as $id => $urls) {
-       			if (isset($urls[0])) {
+       		    if (isset($urls[0]) && is_string($urls[0])) {
 	       			$ret['urls'][$this->getBaseDomain($urls[0])]['url-'.(sizeof($ret['urls'][$this->getBaseDomain($urls[0])])+1)] = $urls[0];
 	       			$ret['domain'][$this->getBaseDomain($urls[0])] = $this->getBaseDomain($urls[0]);
        			}
@@ -258,6 +258,80 @@
        			}
        		}
        		return $ret;		
+		}
+		
+		/**
+		 * extractEmails()
+		 * Pulls Emails from String Data
+		 *
+		 * @param string $data
+		 * @param array $ret
+		 * @return array
+		 */
+		function sortArray($data = array(), $dir = SORT_DESC) {
+		    $string = $array = false;
+		    foreach($data as $key => $values) {
+		        if (is_string($values)) {
+		            $string = true;
+		        } elseif (is_array($values)) {
+		            $array = true;
+		        }
+		    }
+		    if ($array==true)
+		    {
+		        foreach($data as $key => $values) {
+		            if (is_array($values)) {
+		                $data[$key] = self::sortArray($values, $dir);
+		            }
+		        }
+		    }
+		    if ($string==true)
+		    {
+		        $ret = $quekeys = $queue = array();
+		        foreach($data as $key => $values) {
+		            if (is_string($values)) {
+		                $queue[$key] = $values;
+		                $quekeys[$key] = $key;
+		                unset($data[$key]);
+		            }
+		        }
+		        foreach(array_keys($data) as $key)
+		            $quekeys[$key] = $key;
+		        sort($quekeys, $dir);
+		        
+		        foreach($quekeys as $key) {
+		            $ret[$key] = (isset($queue[$key])?$queue[$key]:$data[$key]);
+		        }
+		        return $ret;
+		    }
+		    return $data;
+		}
+		
+		/**
+		 * extractEmails()
+		 * Pulls Emails from String Data
+		 *
+		 * @param string $data
+		 * @param array $ret
+		 * @return array
+		 */
+		function cleanEmails($data = array(), &$ret = array()) {
+		    foreach($data as $key => $values) {
+		        if (is_string($values)) {
+        		    if (strpos($values, ' ')) {
+        		       foreach(explode(" ", $values) as $value)
+        		       {
+        		           if (checkEmail($value) == $value)
+        		               return $value;
+        		       }
+        		    } elseif (checkEmail($values) == $values) {
+        		       return $values;
+        		    }
+    		    } elseif (is_array($values)) {
+    		        $ret[$key] = $data[$key] = self::cleanEmails($values, $ret);
+    		    }
+		    }
+            return $data;
 		}
 		/**
 		 * findEmails()

@@ -30,32 +30,6 @@
 	global $domain, $protocol, $business, $entity, $contact, $referee, $peerings, $source;
 	require_once __DIR__ . DIRECTORY_SEPARATOR . 'apiconfig.php';
 	
-	/**
-	 * Global API Configurations and Setting from file Constants!
-	 */
-	$domain = getDomainSupportism('domain', $_SERVER["HTTP_HOST"]);
-	$protocol = getDomainSupportism('protocol', $_SERVER["HTTP_HOST"]);
-	$business = getDomainSupportism('business', $_SERVER["HTTP_HOST"]);
-	$entity = getDomainSupportism('entity', $_SERVER["HTTP_HOST"]);
-	$contact = getDomainSupportism('contact', $_SERVER["HTTP_HOST"]);
-	$referee = getDomainSupportism('referee', $_SERVER["HTTP_HOST"]);
-	$peerings = getPeersSupporting();
-	
-	/**
-	 * URI Path Finding of API URL Source Locality
-	 * @var unknown_type
-	 */
-	$pu = parse_url($_SERVER['REQUEST_URI']);
-	$source = (isset($_SERVER['HTTPS'])?'https://':'http://').strtolower($_SERVER['HTTP_HOST']).$pu['path'];
-	unset($pu);
-
-	error_reporting(E_ERROR);
-	define('MAXIMUM_QUERIES', 25);
-	ini_set('memory_limit', '128M');
-	include dirname(__FILE__).'/functions.php';
-	include dirname(__FILE__).'/class/apiserver.php';
-	include dirname(__FILE__).'/class/whois.php';
-	
 	$help=false;
 	if (!isset($_GET['whois']) || empty($_GET['whois'])) {
 		$help=true;
@@ -111,11 +85,11 @@
 		default:
 			echo '<h1>'.$whois.' whois data</h1>';
 			echo '<pre style="font-family: \'Courier New\', Courier, Terminal; font-size: 0.77em;">';
-			echo $data;
+			echo print_r($data, true);
 			echo '</pre>';
 			break;
 		case 'raw':
-			echo $data;
+			echo "<?php\n\n return " . var_export($data, true) . ";\n\n?>";
 			break;
 		case 'json':
 			header('Content-type: application/json');
