@@ -15,4 +15,4 @@
 
 
 // APIs URLS
-define('API_PLACES_API_URL', '');
+define('API_STRATA_API_URL', '');
