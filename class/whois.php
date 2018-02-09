@@ -325,11 +325,11 @@ class whois extends apiserver {
 		$return = '%s';
 		foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
 		    
-		    $whois[$whoisserver][$ip] = parent::sortArray(parent::cleanEmails(parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output)), SORT_DESC);
-		    $emails[$whoisserver][$ip] = parent::sortArray(parent::cleanEmails(parent::extractEmails($result, $ret)), SORT_DESC);
+		    $whois[$whoisserver][$ip] = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);;
+		    $emails[$whoisserver][$ip] = (parent::cleanEmails(parent::extractEmails($result, $ret)));
 		}
-		$md5 = md5(json_encode(parent::sortArray($whois)));
-		$emailmd5 = md5(json_encode(parent::sortArray($whois)));
+		$md5 = md5(json_encode(($whois)));
+		$emailmd5 = md5(json_encode(($whois)));
 		$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
 		list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
 		if ($count==0)
@@ -355,7 +355,7 @@ class whois extends apiserver {
 			case 'serial':
 				$ret = array();
 				foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
-				    $ret[$ip][$whoisserver]['whois'] = parent::cleanEmails(parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output));
+				    $ret[$ip][$whoisserver]['whois'] = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);
 				    $ret[$ip][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($result, $ret));
 				    $ret[$ip][$whoisserver]['urls'] = parent::extractURLS($result, $ret);
 				}
@@ -413,8 +413,8 @@ class whois extends apiserver {
 			}
 			
 			$return = '%s';
-			$md5 = md5(json_encode($whois = parent::sortArray(parent::cleanEmails(parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output)), SORT_DESC)));
-			$emailmd5 = md5(json_encode($emails = parent::sortArray(parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret)), SORT_DESC)));	
+			$md5 = md5(json_encode($whois = (parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output))));
+			$emailmd5 = md5(json_encode($emails = (parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret)))));	
 			$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
 			list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
 			if ($count==0)
@@ -434,7 +434,7 @@ class whois extends apiserver {
 				case 'xml':
 				case 'serial':
 				    $ret = array();
-				    $ret[$domain][$whoisserver]['whois'] = parent::cleanEmails(parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output));
+				    $ret[$domain][$whoisserver]['whois'] = parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output);
 				    $ret[$domain][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret));
 				    $ret[$domain][$whoisserver]['urls'] = parent::extractURLS($this->_domain_whois[$domain][$whoisserver], $ret);
 					break;

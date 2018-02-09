@@ -63,3 +63,8 @@ include_once API_ROOT_PATH . DS . 'include' . DS . 'functions.php';
 require_once API_ROOT_PATH . DS . 'include' . DS . 'dbconfig.php';
 require_once API_ROOT_PATH . DS . 'class' . DS . 'database' . DS . 'databasefactory.php';
 $GLOBALS['APIDB'] = APIDatabaseFactory::getDatabaseConnection();
+
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('log_errors', true);
+ini_set('error_log', dirname(__DIR__) . DS . 'error.log.txt');

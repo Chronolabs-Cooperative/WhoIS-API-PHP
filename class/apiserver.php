@@ -59,131 +59,78 @@
 		 * @return array
 		 */
 		function parseToArray($data, $item, $function, $class, $output = 'html') {
-			$ret = array();
-			$nsfound = false;
-			$legalfinished=false;
-			$sep = ':';
-			switch ($class) {
-				case 'whois':
-					if ($function == 'lookupDomain') {
-						$parts = explode("\n", $data);
-						$ret = array();
-						foreach($parts as $line => $result) {
-							foreach (array('..'=>'.', '  '=>' ', '--'=>'-', '::'=>':', ': '=>':', '. '=>':') as $search => $replace)
-								while(strpos($result, $search)) {
-								$result = str_replace($search, $replace, $result);
-							}
-							if (strlen(trim($result))) {
-								if ($legalfinished==false) {
-									if (strpos(strtolower($result), ' id:')>0 || strpos(strtolower(' '.$result), $item)>0) {
-										$legalfinished=true;
-										$parts = explode($sep, $result);
-										$fields = explode(' ', strtolower($parts[0]));
-										$fielda = $fields[0];
-										unset($fields[0]);
-										if ($output=='xml') {
-											$fieldb = implode('-', $fields);
-											$parts[1] = htmlspecialchars($parts[1]);
-										} else
-											$fieldb = implode('-', $fields);
-										if (strlen($parts[1])&&!isset($ret[$fielda][$fieldb]))
-											$ret[$fielda][$fieldb] = $parts[1];
-										elseif (strlen($parts[1])&&!is_array($ret[$fielda][$fieldb])) {
-											$value = $ret[$fielda][$fieldb];
-											unset($ret[$fielda][$fieldb]);
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $value;
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $parts[1];
-										} elseif ( is_array($ret[$fielda][$fieldb]) ) {
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $parts[1];
-										}
-									} else {
-										if ($output=='xml') {
-											$result = htmlspecialchars($result);
-											$ret['legal']['legal-'.(sizeof($ret['legal'])+1)] = $result;
-										} else {
-											$ret['legal'][] = $result;
-										}
-									}
-								} else {
-									if ($nsfound == true && !strpos(strtolower($result),'ame server')) {
-										if ($output=='xml') {
-											$result = htmlspecialchars($result);
-											$ret['legal']['legal-'.(sizeof($ret['legal'])+1)] = $result;
-										} else {
-											$ret['legal'][] = $result;
-										}
-									} else {
-										$parts = explode($sep, $result);
-										if (strpos(strtolower($parts[0]),'name server'))
-											$nsfound = true;
-										$fields = explode(' ', strtolower($parts[0]));
-										$fielda = $fields[0];
-										unset($fields[0]);
-										if ($output=='xml') {
-											$fieldb = implode('-', $fields);
-											$parts[1] = htmlspecialchars($parts[1]);
-										} else
-											$fieldb = implode('-', $fields);
-										if (strlen($parts[1])&&!isset($ret[$fielda][$fieldb]))
-											$ret[$fielda][$fieldb] = $parts[1];
-										elseif (strlen($parts[1])&&!is_array($ret[$fielda][$fieldb])) {
-											$value = $ret[$fielda][$fieldb];
-											unset($ret[$fielda][$fieldb]);
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $value;
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $parts[1];
-										} elseif ( is_array($ret[$fielda][$fieldb]) ) {
-											$ret[$fielda][$fieldb]['node-'.(sizeof($ret[$fielda][$fieldb])+1)] = $parts[1];
-										}
-									}
-								}
-							}
-						}
-					} elseif ($function == 'lookupIP') {
-						$parts = explode("\n", $data);
-						$ret = array();
-						$sep = ': ';
-						foreach($parts as $line => $result) {
-							foreach (array('..'=>'.', '  '=>' ', '--'=>'-', '::'=>':') as $search => $replace)
-								while(strpos($result, $search)) {
-								$result = str_replace($search, $replace, $result);
-							}
-							if (strlen(trim($result))) {
-								$parts = explode($sep, $result);
-								if (strlen($parts[1])) {
-									if ($output=='xml') {
-										$parts[1] = htmlspecialchars($parts[1]);
-										if (isset($ret[$parts[0]])&&!is_array($ret[$parts[0]])) {
-											$value = $ret[$parts[0]];
-											unset($ret[$parts[0]]);
-											$ret[$parts[0]][$parts[0].'-'.(sizeof($ret[$parts[0]])+1)] = $value;
-											$ret[$parts[0]][$parts[0].'-'.(sizeof($ret[$parts[0]])+1)] = $parts[1];
-										} elseif (isset($ret[$parts[0]])&&is_array($ret[$parts[0]])) {
-											$ret[$parts[0]][$parts[0].'-'.(sizeof($ret[$parts[0]])+1)] = $parts[1];
-										} else {
-											$ret[$parts[0]] = $parts[1];
-										}
-									} else {
-										if (isset($ret[$parts[0]])&&!is_array($ret[$parts[0]])) {
-											$value = $ret[$parts[0]];
-											unset($ret[$parts[0]]);
-											$ret[$parts[0]][] = $value;
-											$ret[$parts[0]][] = $parts[1];
-										} elseif (isset($ret[$parts[0]])&&is_array($ret[$parts[0]])) {
-											$ret[$parts[0]][] = $parts[1];
-										} else {
-											$ret[$parts[0]] = $parts[1];
-										}
-									}
-								}
-							}
-						}						
-					}
-					break;
-				default:
-					return explode("\n", $data);
-			}
-			return $ret;
+		    $response = $legal = array();
+	
+		    $parts = explode("\n", $data);
+		    foreach($parts as $line => $result) {
+		        foreach (array('..'=>'.', '  '=>' ', '--'=>'-', '::'=>':', ': '=>':', '. '=>':') as $search => $replace)
+		            if (strpos(' '.$result, $search))
+		            while(strpos(' '.$result, $search)) {
+		                $result = str_replace($search, $replace, $result);
+		            }
+	            $result = str_replace('State/Province', 'State', $result);
+	            $gdata = preg_split("/[:]+/", $result);
+		        if (count($gdata) <> 2)
+		        {
+		            $legal[] = $gdata;
+		        } elseif (count($gdata) == 2)
+		        {
+		            $fields = preg_split("/[\s-]+/", strtolower($gdata[0]));
+		            if (is_array($fields) && count($fields) > 0) {
+		                unset($gdata[0]);
+		                $val = implode(" ", $gdata);
+		                try {
+		                    $response = $this->addToArray($fields, $val, $response);
+		                } catch (Exception $e) {
+		                    echo "$e<br/>";
+		                }
+		            } elseif (count($fields) == 0) {
+		                $response[strtolower($gdata[0])] = $gdata[1];
+		            }
+	                    
+		        }
+		    }
+		    $response['legal'] = $legal; 
+		    return $response;
 		}
+		
+		/**
+		 * 
+		 * @param unknown $fields
+		 * @param unknown $val
+		 * @param unknown $response
+		 * @return unknown|unknown[]
+		 */
+		function addToArray($fields, $val, $response)
+		{
+		   if (!is_array($response))
+		      $response = array();
+		    
+           if (isset($fields[0]))
+		      $zero = $fields[0];
+		   if (isset($fields[1]))
+		      $one = $fields[1];
+		   if (isset($fields[2]))
+		      $two = $fields[2];
+		   if (isset($fields[4]))
+		      $three = $fields[3];
+		   if (isset($fields[4]))
+		      $four = $fields[4];
+		    
+	       if (isset($four) && !empty($four) && !empty($val))
+	           @$response[$zero][$one][$two][$three][$four] = $val;
+           elseif (isset($three) && !empty($three) && !empty($val))
+	           @$response[$zero][$one][$two][$three] = $val;
+           elseif (isset($two) && !empty($two) && !empty($val))
+	           @$response[$zero][$one.'-'.$two] = $val;
+           elseif (isset($one) && !empty($one) && !empty($val))
+	           @$response[$zero][$one] = $val;
+           elseif (isset($zero) && !empty($zero) && !empty($val))
+	           @$response[$zero] = $val;
+	        
+	        return $response;
+		}
+		
 		/**
 		 * getIP()
 		 * Gets Users IP Address
@@ -211,7 +158,7 @@
 		function extractURLS($data, $ret) {
 			$valid_chars = "a-z0-9\/\-_+=.~!%@?#&;:\,$\|";
 			$end_chars   = "a-z0-9\/\-_+=~!%@?#&;:\,$\|";
-			$ret = $this->findWebsites($ret, $ret);
+			$ret = $this->findWebsites($ret, $ret, '');
 			$patterns   = array();
 			$patterns[]     = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([{$valid_chars}]+[{$end_chars}])/ei";
 			$patterns[]     = "/(^|[^]_a-z0-9-=\"'\/:\.])www\.((([a-zA-Z0-9\-]*\.){1,}){1}([a-zA-Z]{2,6}){1})((\/([a-zA-Z0-9\-\._\?\,\'\/\\+&%\$#\=~])*)*)/ei";
@@ -242,7 +189,7 @@
 		function extractEmails($data, $ret) {
 			$valid_chars = "a-z0-9\/\-_+=.~!%@?#&;:,$\|";
 			$end_chars   = "a-z0-9\/\-_+=~!%@?#&;:,$\|";
-			$ret = $this->findEmails($ret, $ret);		
+			$ret = $this->findEmails($ret, $ret, '');		
 			$patterns   = array();
 			$patterns[]     = "/(^|[^]_a-z0-9-=\"'\/:\.]+)([-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+)@((?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,6}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?)/ei";
 			$patterns[]		= "^[_a-zA-Z0-9-\-_]+(\.[_a-zA-Z0-9-\-_]+)*@[a-zA-Z0-9-\-]+(\.[a-zA-Z0-9-\-]+)*(\.([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|mobi|asia|museum|name))$";
