@@ -19,7 +19,9 @@
  * @description		Whois API Service REST
  */
 
-include_once dirname(__FILE__).'/apiserver.php';
+require_once __DIR__ . DS . 'apiserver.php';
+require_once __DIR__ . DS . 'cache' . DS . 'apicache.php';
+
 /**
  * API Server Class Factory
  *
@@ -220,32 +222,12 @@ class whois extends apiserver {
 	/**
 	 * @var array $g_tld				TLD's Sub-main Nodes Buffer
 	 */
-	var	$g_tld = array(
-				'biz','com','edu','gov','info','int','mil','name','net','org','aero','asia','cat','coop','jobs','mobi','museum','pro','tel','travel',
-				'arpa','root','berlin','bzh','cym','gal','geo','kid','kids','lat','mail','nyc','post','sco','web','xxx',
-				'nato', 'example','invalid','localhost','test','bitnet','csnet','ip','local','onion','uucp','co');
+	var	$g_tld = array();
 	
 	/**
 	 * @var array $c_tld				TLD's Country Nodes Buffer
 	 */
-	var	$c_tld = array(
-				// active
-				'ac','ad','ae','af','ag','ai','al','am','an','ao','aq','ar','as','at','au','aw','ax','az',
-				'ba','bb','bd','be','bf','bg','bh','bi','bj','bm','bn','bo','br','bs','bt','bw','by','bz',
-				'ca','cc','cd','cf','cg','ch','ci','ck','cl','cm','cn','co','cr','cu','cv','cx','cy','cz',
-				'de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','eu','fi','fj','fk','fm','fo',
-				'fr','ga','gd','ge','gf','gg','gh','gi','gl','gm','gn','gp','gq','gr','gs','gt','gu','gw',
-				'gy','hk','hm','hn','hr','ht','hu','id','ie','il','im','in','io','iq','ir','is','it','je',
-				'jm','jo','jp','ke','kg','kh','ki','km','kn','kr','kw','ky','kz','la','lb','lc','li','lk',
-				'lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mh','mk','ml','mm','mn','mo','mp','mq',
-				'mr','ms','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np',
-				'nr','nu','nz','om','pa','pe','pf','pg','ph','pk','pl','pn','pr','ps','pt','pw','py','qa',
-				're','ro','ru','rw','sa','sb','sc','sd','se','sg','sh','si','sk','sl','sm','sn','sr','st',
-				'sv','sy','sz','tc','td','tf','tg','th','tj','tk','tl','tm','tn','to','tr','tt','tv','tw',
-				'tz','ua','ug','uk','us','uy','uz','va','vc','ve','vg','vi','vn','vu','wf','ws','ye','yu',
-				'za','zm','zw',
-				// inactive
-				'eh','kp','me','rs','um','bv','gb','pm','sj','so','yt','su','tp','bu','cs','dd','zr');
+	var	$c_tld = array();
 	
 	/**
 	 *  __construct()
@@ -267,6 +249,48 @@ class whois extends apiserver {
 			$_SESSION['whois']['queries']['number'] = 0;
 			$_SESSION['whois']['queries']['time'] = time()+3600;
 		}
+		
+		if (!is_array($this->c_tld = APICache::read('networking-fallout-nodes')) || count($this->c_tld) == 0)
+		{
+		    $this->c_tld = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/fallout/raw.api", 120, 120).'<?php'));
+		    APICache::write('networking-fallout-nodes', $this->c_tld, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+		}
+		
+		if (!is_array($this->g_tld = APICache::read('networking-strata-nodes')) || count($this->g_tld) == 0)
+		{
+		    $this->g_tld = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/strata/raw.api", 120, 120).'<?php'));
+		    APICache::write('networking-strata-nodes', $this->g_tld, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+		}
+		
+		$services = $this->_domain_whoisservers;
+		if (!is_array($this->_domain_whoisservers = APICache::read('networking-whois-servers')) || count($this->_domain_whoisservers) == 0)
+		{
+		    set_time_limit(3600 * 4.75);
+		    foreach(APICache::read('networking-whois-servers-buffer') as $realm => $service)
+		        $services[$realm] = $service;
+		    
+		    foreach($this->c_tld as $ctld)
+		    {
+		        if (!isset($services[$ctld]))
+		            if ($service = $this->findWhoisService($ctld))
+		                $services[$ctld] = $service;
+		    }
+		    foreach($this->g_tld as $gtld)
+		    {
+		        if (!isset($services[$gtld]))
+		            if ($service = $this->findWhoisService($gtld))
+		                $services[$gtld] = $service;
+                foreach($this->c_tld as $ctld)
+                {
+                    if (!isset($services[$gtld.'.'.$ctld]))
+                        if ($service = $this->findWhoisService($gtld.'.'.$ctld))
+                            $services[$gtld.'.'.$ctld] = $service;
+                }
+		    }
+		    APICache::write('networking-whois-servers', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+		    APICache::write('networking-whois-servers-buffer', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9) * mt_rand(2, 9));
+		}
+		die(print_r($this->_domain_whoisservers, true));
 	}
 	
 	/**
@@ -286,6 +310,22 @@ class whois extends apiserver {
 		session_commit();
 	}
 	
+	/**
+	 * Locates Whois Service with resource
+	 * 
+	 * @param string $tld
+	 * @return string|boolean
+	 */
+	private function findWhoisService($tld = '')
+	{
+	    $uris = array('whois.nic.'.$tld, 'whois.'.$tld.'nic.'.$tld, 'whois.'.$tld.'nic.net.'.$tld);
+	    foreach($uris as $uri)
+	    {
+	        if ($this->validateIPv4(gethostbyname($uri)))
+	            return $uri;
+	    }
+	    return false;
+	}
 	
 	/**
 	 * lookupIP()

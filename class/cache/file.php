@@ -101,12 +101,12 @@ class APICacheFile extends APICacheEngine
      */
     public function init($settings = array())
     {
-        if (!is_dir(API_VAR_PATH . '/' . parse_url(API_URL, PHP_URL_HOST)))
-            mkdir(API_VAR_PATH . '/' . parse_url(API_URL, PHP_URL_HOST), 0777, true);
-        
+        if (!is_dir(API_TRUST_PATH . DS . parse_url(API_URL, PHP_URL_HOST) . DS . 'cache'))
+            mkdir(API_TRUST_PATH . DS . parse_url(API_URL, PHP_URL_HOST) . DS . 'cache', 0777, true);
+            
         parent::init($settings);
         $defaults       = array(
-            'path'      => API_VAR_PATH . '/' . parse_url(API_URL, PHP_URL_HOST),
+            'path'      => API_TRUST_PATH . DS . parse_url(API_URL, PHP_URL_HOST) . DS . 'cache',
             'extension' => '.php',
             'prefix'    => 'api_',
             'lock'      => false,
