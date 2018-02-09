@@ -266,6 +266,7 @@ class whois extends apiserver {
 		if (!is_array($this->_domain_whoisservers = APICache::read('networking-whois-servers')) || count($this->_domain_whoisservers) == 0)
 		{
 		    set_time_limit(3600 * 4.75);
+		    APICache::write('networking-whois-servers', APICache::read('networking-whois-servers-buffer'), 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 		    foreach(APICache::read('networking-whois-servers-buffer') as $realm => $service)
 		        $services[$realm] = $service;
 		    
