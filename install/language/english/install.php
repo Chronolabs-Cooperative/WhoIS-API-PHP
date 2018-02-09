@@ -196,3 +196,10 @@ define('API_ERROR_ENCOUNTERED', 'Error');
 define('API_ERROR_SEE_BELOW', 'See below for messages.');
 define('MODULES_AVAILABLE', 'Available Modules');
 define('INSTALL_THIS_MODULE', 'Add %s');
+
+// Whois REST API
+define('API_EXTRAS', 'Extra Configuration Settings');
+define('PATHS_EXTRA', 'Extra Settings');
+define('PATHS_EXTRA_TITLE', 'Extra Settings');
+define('API_STRATA_API_URL_LABEL', 'Internet/Transnetworking Strata+Fallout REST API [&nbsp;See:&nbsp;<a href="https://github.com/Chronolabs-Cooperative/Strata-API-PHP" target="_blank">Github.com...</a>&nbsp;]');
+define('API_STRATA_API_URL_HELP', 'Internet/Transnetworking Strata+Fallout REST API [&nbsp;See:&nbsp;<a href="https://github.com/Chronolabs-Cooperative/Strata-API-PHP" target="_blank">Github.com...</a>&nbsp;]');
