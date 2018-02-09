@@ -8,7 +8,7 @@
  */
 function findWhoisService($tld = '')
 {
-    $uris = array('whois.nic.'.$tld, 'whois.'.$tld.'nic.'.$tld, 'whois.'.$tld.'nic.net.'.$tld);
+    $uris = array('whois.'.$tld, 'whois.nic.'.$tld, 'whois.'.$tld.'nic.'.$tld, 'whois.'.$tld.'nic.net.'.$tld);
     foreach($uris as $uri)
     {
         if (validateIPv4(gethostbyname($uri)))
