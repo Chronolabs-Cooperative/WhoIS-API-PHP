@@ -1,8 +1,8 @@
 ## Chronolabs Cooperative presents
 
-# WhoIS REST API Services
+# Internet WhoIS REST API Services
 
-## Version: 2.1.11
+## Version: 2.2.11
 
 ### Author: Dr. Simon Antony Roberts <simon@snails.email>
 

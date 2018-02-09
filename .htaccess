@@ -1,0 +1,11 @@
+php_value memory_limit 32M
+php_value upload_max_filesize 1M
+php_value post_max_size 1M
+php_value error_reporting 1
+php_value display_errors 1
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^v([0-9]{1,2})/(.*?)/(json|xml|serial|raw|html).api$ ./index.php?version=$1&whois=$2&output=$3 [L,NC,QSA]
