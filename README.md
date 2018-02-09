@@ -28,6 +28,21 @@ The follow lines go in your API_ROOT_PATH/.htaccess
     
     RewriteRule ^v([0-9]{1,2})/(.*?)/(json|xml|serial|raw|html).api$ ./index.php?version=$1&whois=$2&output=$3 [L,NC,QSA]
 
+## Scheduled Cron Job Details.,
+    
+There is one or more cron jobs that is scheduled task that need to be added to your system kernel when installing this API, the following command is before you install the chronological jobs with crontab in debain/ubuntu
+    
+    Execute:-
+    $ sudo crontab -e
+
+### CronTab Entry:
+    
+    * */12 */20 * * /usr/bin/php -q /path/to/crons/find-whois-services.php
+
+## Licensing
+
+ * This is released under General Public License 3 - GPL3 - Only!
+
 # Installation
 
 Copy the contents of this archive/repository to the run time environment, configue apache2, ngix or iis to resolve the path of this repository and run the HTML Installer.

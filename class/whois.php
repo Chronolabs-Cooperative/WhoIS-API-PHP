@@ -265,29 +265,8 @@ class whois extends apiserver {
 		$services = $this->_domain_whoisservers;
 		if (!is_array($this->_domain_whoisservers = APICache::read('networking-whois-servers')) || count($this->_domain_whoisservers) == 0)
 		{
-		    set_time_limit(3600 * 4.75);
-		    APICache::write('networking-whois-servers', APICache::read('networking-whois-servers-buffer'), 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 		    foreach(APICache::read('networking-whois-servers-buffer') as $realm => $service)
 		        $services[$realm] = $service;
-		    
-		    foreach($this->c_tld as $ctld)
-		    {
-		        if (!isset($services[$ctld]))
-		            if ($service = $this->findWhoisService($ctld))
-		                $services[$ctld] = $service;
-		    }
-		    foreach($this->g_tld as $gtld)
-		    {
-		        if (!isset($services[$gtld]))
-		            if ($service = $this->findWhoisService($gtld))
-		                $services[$gtld] = $service;
-                foreach($this->c_tld as $ctld)
-                {
-                    if (!isset($services[$gtld.'.'.$ctld]))
-                        if ($service = $this->findWhoisService($gtld.'.'.$ctld))
-                            $services[$gtld.'.'.$ctld] = $service;
-                }
-		    }
 		    APICache::write('networking-whois-servers', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 		    APICache::write('networking-whois-servers-buffer', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9) * mt_rand(2, 9));
 		}
@@ -310,22 +289,6 @@ class whois extends apiserver {
 		session_commit();
 	}
 	
-	/**
-	 * Locates Whois Service with resource
-	 * 
-	 * @param string $tld
-	 * @return string|boolean
-	 */
-	private function findWhoisService($tld = '')
-	{
-	    $uris = array('whois.nic.'.$tld, 'whois.'.$tld.'nic.'.$tld, 'whois.'.$tld.'nic.net.'.$tld);
-	    foreach($uris as $uri)
-	    {
-	        if ($this->validateIPv4(gethostbyname($uri)))
-	            return $uri;
-	    }
-	    return false;
-	}
 	
 	/**
 	 * lookupIP()
