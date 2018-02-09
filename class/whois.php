@@ -291,7 +291,6 @@ class whois extends apiserver {
 		    APICache::write('networking-whois-servers', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 		    APICache::write('networking-whois-servers-buffer', $this->_domain_whoisservers = $services, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9) * mt_rand(2, 9));
 		}
-		die(print_r($this->_domain_whoisservers, true));
 	}
 	
 	/**
