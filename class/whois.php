@@ -88,7 +88,7 @@ class whois extends apiserver {
 			"ck" =>"whois.nic.ck",
 			"cl" =>"whois.nic.cl",
 			"cn" =>"whois.cnnic.net.cn",
-			"com" =>"whois.verisign-grs.com",
+			"com" =>"whois.nic.com",
 			"coop" =>"whois.nic.coop",
 			"cx" =>"whois.nic.cx",
 			"cy" =>"whois.ripe.net",
@@ -328,16 +328,15 @@ class whois extends apiserver {
 		$return = '%s';
 		foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
 		    
-		    $whois[$whoisserver][$ip] = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);;
-		    $emails[$whoisserver][$ip] = (parent::cleanEmails(parent::extractEmails($result, $ret)));
+		    $whois[$whoisserver][$ip] = $whois = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);
 		}
-		$md5 = md5(json_encode(($whois)));
-		$emailmd5 = md5(json_encode(($whois)));
+		$md5 = md5(json_encode(($whois[$whoisserver][$ip])));
+		$emailmd5 = md5(json_encode(($whois[$whoisserver][$ip]['emails'])));
 		$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
 		list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
 		if ($count==0)
 		{
-		    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$ip'), '$channel', '$md5', '$emailmd5', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($emails)?$emails:array(), true))) . "', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($whois)?$whois:array(), true))) . "')";
+		    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$ip'), '$channel', '$md5', '$emailmd5', '" . mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode($whois[$whoisserver][$ip]['emails'])) . "', '" . mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode($whois[$whoisserver][$ip])) . "')";
 		    if (!$GLOBALS['APIDB']->queryF($sql))
 		        die("SQL Failed: $sql;");
 		}
@@ -358,13 +357,28 @@ class whois extends apiserver {
 			case 'serial':
 				$ret = array();
 				foreach($this->_ip_whois[$ip] as $whoisserver=>$result) {
-				    $ret[$ip][$whoisserver]['whois'] = parent::parseToArray($result, $ip, __FUNCTION__, __CLASS__, $output);
-				    $ret[$ip][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($result, $ret));
-				    $ret[$ip][$whoisserver]['urls'] = parent::extractURLS($result, $ret);
+				    $ret[str_replace('.','-',$whoisserver)] = $whois[$whoisserver][$ip];
 				}
 				break;
 		}
 		return $ret;
+	}
+	
+	/**
+	 * Locates Whois Service with resource
+	 *
+	 * @param string $tld
+	 * @return string|boolean
+	 */
+	function findWhoisService($tld = '')
+	{
+	    $uris = array('whois.'.$tld, 'whois.nic.'.$tld, 'whois.'.$tld.'nic.'.$tld, 'whois.'.$tld.'nic.net.'.$tld);
+	    foreach($uris as $uri)
+	    {
+	        if (parent::validateIPv4(gethostbyname($uri)))
+	            return $uri;
+	    }
+	    return false;
 	}
 	
 	/**
@@ -376,14 +390,14 @@ class whois extends apiserver {
 	 * @return string
 	 */
 	 private function lookupDomain($domain,$output='html') {
-		if (!is_array($this->_domain_whois))
-			$this->_domain_whois = array();
-		if (parent::validateDomain($domain)==true) {
-			if (!is_array($this->_domain_whois[$domain]))
-				$this->_domain_whois[$domain] = array();
-			$domain_parts = explode(".", $domain);
-			$tld = strtolower(array_pop($domain_parts));
-			$whoisserver = $this->_domain_whoisservers[$tld];
+            if (!is_array($this->_domain_whois))
+            	$this->_domain_whois = array();
+            if (parent::validateDomain($domain)==true) {
+            	if (!is_array($this->_domain_whois[$domain]))
+            		$this->_domain_whois[$domain] = array();
+            $whoisserver = $this->_domain_whoisservers[$this->getBaseClass($domain)];
+            if (empty($whoisserver))
+                $whoisserver = $this->findWhoisService($this->getBaseClass($domain));
 			if (!isset($this->_domain_whois[$domain][$whoisserver])) {
 				if(!$whoisserver) {
 					$this->_domain_whois[$domain][$whoisserver] = "Error: No appropriate Whois server found for $domain domain!";
@@ -417,12 +431,12 @@ class whois extends apiserver {
 			
 			$return = '%s';
 			$md5 = md5(json_encode($whois = (parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output))));
-			$emailmd5 = md5(json_encode($emails = (parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret)))));	
+			$emailmd5 = md5(json_encode($whois['emails']));	
 			$sql = "SELECT count(*) FROM `" . $GLOBALS['APIDB']->prefix('history') . "` WHERE `md5` LIKE '$md5' AND `email-md5` LIKE '$emailmd5'";
 			list($count) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
 			if ($count==0)
 			{
-			    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$domain'), 'realm', '$md5', '$emailmd5', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($emails)?$emails:array(), true))) . "', '" . sprintf($return, mysqli_real_escape_string($GLOBALS['APIDB']->conn, json_encode(is_array($whois)?$whois:array(), true))) . "')";
+			    $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('history') . "` (`stored`, `value`, `typal`, `md5`, `email-md5`, `email`, `history`) VALUES(UNIX_TIMESTAMP(), md5('$domain'), 'realm', '$md5', '$emailmd5', '" . $GLOBALS['APIDB']->escape(json_encode($whois['emails'])) . "', '" . $GLOBALS['APIDB']->escape(json_encode($whois)) . "')";
 			    if (!$GLOBALS['APIDB']->queryF($sql))
 			        die("SQL Failed: $sql;");
 			}
@@ -437,25 +451,23 @@ class whois extends apiserver {
 				case 'xml':
 				case 'serial':
 				    $ret = array();
-				    $ret[$domain][$whoisserver]['whois'] = parent::parseToArray($this->_domain_whois[$domain][$whoisserver], $domain, __FUNCTION__, __CLASS__, $output);
-				    $ret[$domain][$whoisserver]['emails'] = parent::cleanEmails(parent::extractEmails($this->_domain_whois[$domain][$whoisserver], $ret));
-				    $ret[$domain][$whoisserver]['urls'] = parent::extractURLS($this->_domain_whois[$domain][$whoisserver], $ret);
+				    $ret[str_replace('.','-',$whoisserver)] = $whois;
 					break;
 			}
 			
 		} else {
-		switch($output) {
-				default:
-				case 'html':
-				    return array('html'=>"Error: $domain could not be validated!");
-				    break;
-				case 'raw':
-				case 'json':
-				case 'xml':
-				case 'serial':
-					return array("error"=> "$domain could not be validated!");
-					break;
-			}
+    		switch($output) {
+    				default:
+    				case 'html':
+    				    return array('html'=>"Error: $domain could not be validated!");
+    				    break;
+    				case 'raw':
+    				case 'json':
+    				case 'xml':
+    				case 'serial':
+    					return array("error"=> "$domain could not be validated!");
+    					break;
+    			}
 		}
 		return $ret;
 	}
@@ -509,8 +521,8 @@ class whois extends apiserver {
 			exit;
 		}
 		$_SESSION['whois']['queries']['number']++;
-		if (parent::validateDomain(parent::getBaseDomain((substr($data,0,4)!='http'?'http://':'').$data))) {
-			return $this->lookupDomain(parent::getBaseDomain((substr($data,0,4)!='http'?'http://':'').$data), $output);
+		if (parent::validateDomain(parent::getBaseDomain($data))) {
+		    return $this->lookupDomain(parent::getBaseDomain($data), $output);
 		} elseif (parent::validateIPv4($data)||parent::validateIPv6($data)) {
 			return $this->lookupIP($data, $output);
 		} else {

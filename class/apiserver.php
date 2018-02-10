@@ -27,6 +27,12 @@
 	 */
 	class apiserver {
 		
+	    var $_emails = array();
+	    
+	    var $_urls = array();
+	    
+	    var $_domains = array();
+	    
 		/**
 		 *  __construct()
 		 *  Constructor
@@ -59,7 +65,8 @@
 		 * @return array
 		 */
 		function parseToArray($data, $item, $function, $class, $output = 'html') {
-		    $response = $legal = array();
+		    
+		    $this->_emails = $this->_urls = $this->_domains = $response = $legal = array();
 	
 		    $parts = explode("\n", $data);
 		    foreach($parts as $line => $result) {
@@ -90,6 +97,9 @@
 	                    
 		        }
 		    }
+		    $response['emails'] = $this->_emails;
+		    $response['urls'] = $this->_urls;
+		    $response['domains'] = $this->_domains;
 		    $response['legal'] = $legal; 
 		    return $response;
 		}
@@ -116,7 +126,24 @@
 		      $three = $fields[3];
 		   if (isset($fields[4]))
 		      $four = $fields[4];
-		    
+
+		   $url = '';
+		   if (checkEmail($val)) {
+		       $this->_emails[$zero] = $val;
+		       $parts = explode("@", $val);
+		       $this->_domains[$zero] = $this->getBaseDomain($parts[1]);
+		   } elseif(strpos($val, 'http')>0) {
+		       $parts = preg_split("/[\s-]+/", $val);
+		       foreach($parts as $key => $value)
+		           if (substr($value, 0, 4) == 'http')
+		           {
+		               $url = $value;
+		               $this->_domains[$zero] = $this->getBaseDomain(parse_url($value, PHP_URL_HOST));
+		               unset($parts[$key]);
+		           }
+		       $val = trim(implode(" ", $parts));
+		   }
+	       
 	       if (isset($four) && !empty($four) && !empty($val))
 	           @$response[$zero][$one][$two][$three][$four] = $val;
            elseif (isset($three) && !empty($three) && !empty($val))
@@ -127,7 +154,18 @@
 	           @$response[$zero][$one] = $val;
            elseif (isset($zero) && !empty($zero) && !empty($val))
 	           @$response[$zero] = $val;
-	        
+	        	           
+           if (isset($four) && !empty($four) && !empty($url))
+                @$response[$zero][$one][$two][$three][$four.'-url'] = $url;
+           elseif (isset($three) && !empty($three) && !empty($url))
+                @$response[$zero][$one][$two][$three.'-url'] = $url;
+           elseif (isset($two) && !empty($two) && !empty($url))
+                @$response[$zero][$one.'-'.$two.'-url'] = $url;
+           elseif (isset($one) && !empty($one) && !empty($url))
+                @$response[$zero][$one.'-url'] = $url;
+           elseif (isset($zero) && !empty($zero) && !empty($url))
+                @$response[$zero.'-url'] = $url;
+               
 	        return $response;
 		}
 		
@@ -389,36 +427,85 @@
 		 * @param boolean $debug
 		 * @return string
 		 */
-		function getBaseDomain($url, $debug = 0)
+		function getBaseDomain($realm = '')
 		{
-			$url = strtolower($url);
-			$full_domain = parse_url($url, PHP_URL_HOST);
+	        
+	        if (!is_array($fallout = APICache::read('networking-fallout-nodes')) || count($fallout) == 0)
+	        {
+	            $fallout = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/fallout/raw.api", 120, 120).'<?php'));
+	            APICache::write('networking-fallout-nodes', $fallout, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+	        }
+	        
+	        if (!is_array($classes = APICache::read('networking-strata-nodes')) || count($classes) == 0)
+	        {
+	            $classes = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/strata/raw.api", 120, 120).'<?php'));
+	            APICache::write('networking-strata-nodes', $classes, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+	        }
+	        
+	        // Get Full Hostname
+	        if (!filter_var($realm, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 || FILTER_FLAG_IPV4) === false)
+	            return $realm;
+		    
+            // break up domain, reverse
+            $elements = explode('.', $realm);
+            $elements = array_reverse($elements);
+            
+            // Returns Base Domain
+            if (in_array($elements[0], $classes))
+                return $elements[1] . '.' . $elements[0];
+            elseif (in_array($elements[0], $fallout) && in_array($elements[1], $classes))
+                return $elements[2] . '.' . $elements[1] . '.' . $elements[0];
+            elseif (in_array($elements[0], $fallout))
+                return  $elements[1] . '.' . $elements[0];
+            else
+                return  $elements[1] . '.' . $elements[0];
+                    
+            return $realm;
+		}
 		
-			// break up domain, reverse
-			$domain = explode('.', $full_domain);
-			$domain = array_reverse($domain);
-			// first check for ip address
-			if (count($domain) == 4 && is_numeric($domain[0]) && is_numeric($domain[1]) && is_numeric($domain[2]) && is_numeric($domain[3])) {
-				return $full_domain;
-			}
-		
-			// if only 2 domain parts, that must be our domain
-			if (count($domain) <= 2) {
-				return $full_domain;
-			}
-		
-			/*
-			 *	finally, with 3+ domain parts: obviously D0 is tld now,
-			*	if D0 = ctld and D1 = gtld, we might have something like com.uk so,
-			*	if D0 = ctld && D1 = gtld && D2 != 'www', domain = D2.D1.D0 else if D0 = ctld && D1 = gtld && D2 == 'www',
-			*	domain = D1.D0 else domain = D1.D0 - these rules are simplified below.
-			*/
-			if (in_array($domain[0], $this->c_tld) && in_array($domain[1], $this->g_tld) && $domain[2] != 'www') {
-				$full_domain = $domain[2] . '.' . $domain[1] . '.' . $domain[0];
-			} else {
-				$full_domain = $domain[1] . '.' . $domain[0];
-			}
-			// did we succeed?
-			return $full_domain;
+		/**
+		 * getBaseDomain()
+		 * Removes Subdomains from Domain String
+		 *
+		 * @param string $url
+		 * @param boolean $debug
+		 * @return string
+		 */
+		function getBaseClass($realm = '')
+		{
+		    		        
+	        static $fallout, $classes;
+	        
+	        if (!is_array($fallout = APICache::read('networking-fallout-nodes')) || count($fallout) == 0)
+	        {
+	            $fallout = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/fallout/raw.api", 120, 120).'<?php'));
+	            APICache::write('networking-fallout-nodes', $fallout, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+	        }
+	        
+	        if (!is_array($classes = APICache::read('networking-strata-nodes')) || count($classes) == 0)
+	        {
+	            $classes = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/strata/raw.api", 120, 120).'<?php'));
+	            APICache::write('networking-strata-nodes', $classes, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
+	        }
+	        
+	        // Get Full Hostname
+	        if (!filter_var($realm, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 || FILTER_FLAG_IPV4) === false)
+	            return $realm;
+	            
+            // break up domain, reverse
+            $elements = explode('.', $realm);
+            $elements = array_reverse($elements);
+	            
+		            // Returns Base Domain
+            if (in_array($elements[0], $classes))
+                return $elements[0];
+            elseif (in_array($elements[0], $fallout) && in_array($elements[1], $classes))
+                return $elements[1] . '.' . $elements[0];
+            elseif (in_array($elements[0], $fallout))
+                return  $elements[0];
+            else
+                return  $elements[0];
+                
+		    return 'com';
 		}
 	}
