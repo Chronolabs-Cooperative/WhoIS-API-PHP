@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>WhoIS REST API Services 2.2.14</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">WhoIS REST API Services 2.2.14</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">11</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-672715863"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-672715863" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/APIFormRendererInterface.html">APIFormRendererInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/APICache.html">APICache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheApc.html">APICacheApc</a></li>
+                                                    <li class="class"><a href="../classes/APICacheEngine.html">APICacheEngine</a></li>
+                                                    <li class="class"><a href="../classes/APICacheFile.html">APICacheFile</a></li>
+                                                    <li class="class"><a href="../classes/APICacheMemcache.html">APICacheMemcache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModel.html">APICacheModel</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelHandler.html">APICacheModelHandler</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelObject.html">APICacheModelObject</a></li>
+                                                    <li class="class"><a href="../classes/APICacheXcache.html">APICacheXcache</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabase.html">APIDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabaseFactory.html">APIDatabaseFactory</a></li>
+                                                    <li class="class"><a href="../classes/APIFileHandler.html">APIFileHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIFolderHandler.html">APIFolderHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIForm.html">APIForm</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButton.html">APIFormButton</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButtonTray.html">APIFormButtonTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCaptcha.html">APIFormCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCheckBox.html">APIFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIFormColorPicker.html">APIFormColorPicker</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDateTime.html">APIFormDateTime</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDhtmlTextArea.html">APIFormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormEditor.html">APIFormEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElement.html">APIFormElement</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElementTray.html">APIFormElementTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormFile.html">APIFormFile</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHidden.html">APIFormHidden</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHiddenToken.html">APIFormHiddenToken</a></li>
+                                                    <li class="class"><a href="../classes/APIFormLabel.html">APIFormLabel</a></li>
+                                                    <li class="class"><a href="../classes/APIFormPassword.html">APIFormPassword</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadio.html">APIFormRadio</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadioYN.html">APIFormRadioYN</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRenderer.html">APIFormRenderer</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererBootstrap3.html">APIFormRendererBootstrap3</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererLegacy.html">APIFormRendererLegacy</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelect.html">APIFormSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCheckGroup.html">APIFormSelectCheckGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCountry.html">APIFormSelectCountry</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectEditor.html">APIFormSelectEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectGroup.html">APIFormSelectGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectLang.html">APIFormSelectLang</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectMatchOption.html">APIFormSelectMatchOption</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTheme.html">APIFormSelectTheme</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTimezone.html">APIFormSelectTimezone</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectUser.html">APIFormSelectUser</a></li>
+                                                    <li class="class"><a href="../classes/APIFormText.html">APIFormText</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextArea.html">APIFormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextDateSelect.html">APIFormTextDateSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTinymce.html">APIFormTinymce</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupFormCheckBox.html">APIGroupFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupPermForm.html">APIGroupPermForm</a></li>
+                                                    <li class="class"><a href="../classes/APIInstallWizard.html">APIInstallWizard</a></li>
+                                                    <li class="class"><a href="../classes/APILoad.html">APILoad</a></li>
+                                                    <li class="class"><a href="../classes/APILocalAbstract.html">APILocalAbstract</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabase.html">APIMySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseProxy.html">APIMySQLDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseSafe.html">APIMySQLDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabase.html">APIMySQLiDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseProxy.html">APIMySQLiDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseSafe.html">APIMySQLiDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIPreload.html">APIPreload</a></li>
+                                                    <li class="class"><a href="../classes/APIPreloadItem.html">APIPreloadItem</a></li>
+                                                    <li class="class"><a href="../classes/APISecurity.html">APISecurity</a></li>
+                                                    <li class="class"><a href="../classes/apiserver.html">apiserver</a></li>
+                                                    <li class="class"><a href="../classes/APISimpleForm.html">APISimpleForm</a></li>
+                                                    <li class="class"><a href="../classes/APITableForm.html">APITableForm</a></li>
+                                                    <li class="class"><a href="../classes/APIThemeForm.html">APIThemeForm</a></li>
+                                                    <li class="class"><a href="../classes/APIUserUtility.html">APIUserUtility</a></li>
+                                                    <li class="class"><a href="../classes/APIUtility.html">APIUtility</a></li>
+                                                    <li class="class"><a href="../classes/Criteria.html">Criteria</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaCompo.html">CriteriaCompo</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaElement.html">CriteriaElement</a></li>
+                                                    <li class="class"><a href="../classes/Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/Db_manager.html">Db_manager</a></li>
+                                                    <li class="class"><a href="../classes/FormDhtmlTextArea.html">FormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/FormTextArea.html">FormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizer.html">MyTextSanitizer</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizerExtension.html">MyTextSanitizerExtension</a></li>
+                                                    <li class="class"><a href="../classes/MytsCensor.html">MytsCensor</a></li>
+                                                    <li class="class"><a href="../classes/MytsFlash.html">MytsFlash</a></li>
+                                                    <li class="class"><a href="../classes/MytsIframe.html">MytsIframe</a></li>
+                                                    <li class="class"><a href="../classes/MytsImage.html">MytsImage</a></li>
+                                                    <li class="class"><a href="../classes/MytsLi.html">MytsLi</a></li>
+                                                    <li class="class"><a href="../classes/MytsMms.html">MytsMms</a></li>
+                                                    <li class="class"><a href="../classes/MytsMp3.html">MytsMp3</a></li>
+                                                    <li class="class"><a href="../classes/MytsRtsp.html">MytsRtsp</a></li>
+                                                    <li class="class"><a href="../classes/MytsSoundcloud.html">MytsSoundcloud</a></li>
+                                                    <li class="class"><a href="../classes/MytsSyntaxhighlight.html">MytsSyntaxhighlight</a></li>
+                                                    <li class="class"><a href="../classes/MytsTextfilter.html">MytsTextfilter</a></li>
+                                                    <li class="class"><a href="../classes/MytsUl.html">MytsUl</a></li>
+                                                    <li class="class"><a href="../classes/MytsWiki.html">MytsWiki</a></li>
+                                                    <li class="class"><a href="../classes/MytsWmp.html">MytsWmp</a></li>
+                                                    <li class="class"><a href="../classes/MytsYoutube.html">MytsYoutube</a></li>
+                                                    <li class="class"><a href="../classes/PathStuffController.html">PathStuffController</a></li>
+                                                    <li class="class"><a href="../classes/SqlUtility.html">SqlUtility</a></li>
+                                                    <li class="class"><a href="../classes/TinyMCE.html">TinyMCE</a></li>
+                                                    <li class="class"><a href="../classes/whois.html">whois</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>APIFolderHandler</h1>
+                    <p><em>Folder structure browser, lists folders and files.</em></p>
+                    <p>Long description for class</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/APIFolderHandler.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_pwd" class="">pwd()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_cd" class="">cd()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_read" class="">read()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_find" class="">find()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_findRecursive" class="">findRecursive()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method__findRecursive" class="">_findRecursive()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_isWindowsPath" class="">isWindowsPath()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_isAbsolute" class="">isAbsolute()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_normalizePath" class="">normalizePath()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_correctSlashFor" class="">correctSlashFor()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_slashTerm" class="">slashTerm()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_addPathElement" class="">addPathElement()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_inAPIPath" class="">inAPIPath()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_inPath" class="">inPath()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_chmod" class="">chmod()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_tree" class="">tree()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_dirsize" class="">dirsize()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_copy" class="">copy()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_move" class="">move()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_messages" class="">messages()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_errors" class="">errors()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_realpath" class="">realpath()</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#method_isSlashTerm" class="">isSlashTerm()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/APIFolderHandler.html#property_path" class="">$path</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_sort" class="">$sort</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_mode" class="">$mode</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_messages" class="">$messages</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_errors" class="">$errors</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_directories" class="">$directories</a><br />
+                                                                    <a href="../classes/APIFolderHandler.html#property_files" class="">$files</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/class.file.folder.html"><div class="path-wrapper">class/file/folder.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">cake\cake.cake.libs</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\APIFolderHandler</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_path" name="property_path" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$path</h3>
+                <pre class="signature">$path : </pre>
+                <p><em>Path to Folder.</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sort" name="property_sort" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$sort</h3>
+                <pre class="signature">$sort : </pre>
+                <p><em>Sortedness.</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mode" name="property_mode" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$mode</h3>
+                <pre class="signature">$mode : </pre>
+                <p><em>mode to be used on create.</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_messages" name="property_messages" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$messages</h3>
+                <pre class="signature">$messages : mixed|string|int</pre>
+                <p><em>holds messages from last method.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_errors" name="property_errors" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$errors</h3>
+                <pre class="signature">$errors : mixed|string|int</pre>
+                <p><em>holds errors from last method.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_directories" name="property_directories" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$directories</h3>
+                <pre class="signature">$directories : mixed|string|int</pre>
+                <p><em>holds array of complete directory paths.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_files" name="property_files" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$files</h3>
+                <pre class="signature">$files : mixed|string|int</pre>
+                <p><em>holds array of complete file paths.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(bool|string  <span class="argument">path = \false</span>,   <span class="argument">create = \true</span>,   <span class="argument">mode = \false</span>) </pre>
+                <p><em>Constructor.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>bool|string</td>
+                                <td>path </td>
+                                <td><p>Path to folder</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>create </td>
+                                <td><p>Create folder if not found</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>mode </td>
+                                <td><p>Mode (CHMOD) to apply to created folder, false to ignore</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pwd" name="method_pwd" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pwd()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pwd() : </pre>
+                <p><em>Return current path.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Current path</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cd" name="method_cd" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cd()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">cd(  <span class="argument">path</span>) : </pre>
+                <p><em>Change directory to $desired_path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to the directory to change to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>The new path. Returns false on failure</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_read" name="method_read" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">read()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">read(  <span class="argument">sort = \true</span>,   <span class="argument">exceptions = \false</span>) : </pre>
+                <p><em>Returns an array of the contents of the current directory, or false on failure.</em></p>
+                <p>The returned array holds two arrays: one of dirs and one of files.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>sort </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>exceptions </td>
+                                <td><p>either an array or boolean true will no grab dot files</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Contents of current directory as an array, false on failure</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_find" name="method_find" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">find()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">find(  <span class="argument">regexp_pattern = .*</span>,   <span class="argument">sort = \false</span>) : mixed|string|int</pre>
+                <p><em>Returns an array of all matching files in current directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>regexp_pattern </td>
+                                <td><p>Preg_match pattern (Defaults to: .*)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>sort </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; <p>Files that match given pattern</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findRecursive" name="method_findRecursive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findRecursive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findRecursive(  <span class="argument">pattern = .*</span>,   <span class="argument">sort = \false</span>) : mixed|string|int</pre>
+                <p><em>Returns an array of all matching files in and below current directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>pattern </td>
+                                <td><p>Preg_match pattern (Defaults to: .*)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>sort </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; <p>Files matching $pattern</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__findRecursive" name="method__findRecursive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">_findRecursive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_findRecursive(  <span class="argument">pattern</span>,   <span class="argument">sort = \false</span>) : mixed|string|int</pre>
+                <p><em>Private helper function for findRecursive.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>pattern </td>
+                                <td><p>Pattern to match against</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>sort </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; <p>Files matching pattern</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isWindowsPath" name="method_isWindowsPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isWindowsPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isWindowsPath(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns true if given $path is a Windows path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>true if windows path, false otherwise</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isAbsolute" name="method_isAbsolute" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isAbsolute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isAbsolute(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns true if given $path is an absolute path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizePath" name="method_normalizePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">normalizePath(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns a correct set of slashes for given $path. (\\ for Windows paths and / for other paths.)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Set of slashes (&quot;\&quot; or &quot;/&quot;)</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_correctSlashFor" name="method_correctSlashFor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">correctSlashFor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">correctSlashFor(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns a correct set of slashes for given $path. (\\ for Windows paths and / for other paths.)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Set of slashes (&quot;\&quot; or &quot;/&quot;)</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slashTerm" name="method_slashTerm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slashTerm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slashTerm(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns $path with added terminating slash (corrected for Windows or other OS).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Path with ending slash</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addPathElement" name="method_addPathElement" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addPathElement()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addPathElement(  <span class="argument">path</span>,   <span class="argument">element</span>) : </pre>
+                <p><em>Returns $path with $element added, with correct slash in-between.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>element </td>
+                                <td><p>Element to and at end of path</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Combined path</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inAPIPath" name="method_inAPIPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">inAPIPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inAPIPath(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns true if the File is in a given APIPath.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inPath" name="method_inPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">inPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inPath(  <span class="argument">path</span>,   <span class="argument">reverse = \false</span>) : </pre>
+                <p><em>Returns true if the File is in given path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>reverse </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_chmod" name="method_chmod" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">chmod()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">chmod(  <span class="argument">path</span>, bool|int  <span class="argument">mode = \false</span>,   <span class="argument">recursive = \true</span>, mixed|string|int  <span class="argument">exceptions = array()</span>) : </pre>
+                <p><em>Change the mode on a directory structure recursively.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>The path to chmod</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>mode </td>
+                                <td><p>octal value 0755</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>recursive </td>
+                                <td><p>chmod recursively</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed|string|int</td>
+                                <td>exceptions </td>
+                                <td><p>array of files, directories to skip</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Returns TRUE on success, FALSE on failure</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_tree" name="method_tree" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">tree()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">tree(  <span class="argument">path</span>,   <span class="argument">hidden = \true</span>,   <span class="argument">type = \null</span>) : </pre>
+                <p><em>Returns an array of nested directories and files in each directory</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>the directory path to build the tree from</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>hidden </td>
+                                <td><p>return hidden files and directories</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>type </td>
+                                <td><p>either file or dir. null returns both files and directories</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>array of nested directories and files in each directory</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create(  <span class="argument">pathname</span>, bool|int  <span class="argument">mode = \false</span>) : </pre>
+                <p><em>Create a directory structure recursively.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>pathname </td>
+                                <td><p>The directory structure to create</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>mode </td>
+                                <td><p>octal value 0755</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Returns TRUE on success, FALSE on failure</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dirsize" name="method_dirsize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dirsize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dirsize() : </pre>
+                <p><em>Returns the size in bytes of this Folder.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>$size</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(  <span class="argument">path</span>) : </pre>
+                <p><em>Recursively Remove directories if system allow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path of directory to delete</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Success</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_copy" name="method_copy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">copy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">copy(array|string  <span class="argument">options = array()</span>) : </pre>
+                <p><em>Recursive directory copy.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|string</td>
+                                <td>options </td>
+                                <td><p>(to, from, chmod, skip)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_move" name="method_move" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">move()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">move(array|string  <span class="argument">options</span>) : </pre>
+                <p><em>Recursive directory move.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|string</td>
+                                <td>options </td>
+                                <td><p>(to, from, chmod, skip)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Success</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_messages" name="method_messages" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">messages()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">messages() : mixed|string|int</pre>
+                <p><em>get messages from latest method</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_errors" name="method_errors" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">errors()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">errors() : mixed|string|int</pre>
+                <p><em>get error from latest method</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_realpath" name="method_realpath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">realpath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">realpath(  <span class="argument">path</span>) : </pre>
+                <p><em>Get the real path (taking &quot;.</em></p>
+                <p>.&quot; and such into account)</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to resolve</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>The resolved path</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isSlashTerm" name="method_isSlashTerm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isSlashTerm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isSlashTerm(  <span class="argument">path</span>) : </pre>
+                <p><em>Returns true if given $path ends in a slash (i.e. is slash-terminated).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>path </td>
+                                <td><p>Path to check</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>true if path ends with slash, false otherwise</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFolderHandler.html"><div class="path-wrapper">\APIFolderHandler</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">folder.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/class/file/folder.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 10th, 2018 at 10:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Chronolabs REST Whois API
+ * WhoIS REST Services API
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -9,15 +9,23 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       Chronolabs Cooperative http://labs.coop
- * @license         GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
- * @package         whois
- * @since           1.0.2
- * @author          Simon Roberts <meshy@labs.coop>
- * @version         $Id: apiserver.php 1000 2013-06-07 01:20:22Z mynamesnot $
- * @subpackage		api
- * @description		Whois API Service REST
+ * @copyright       Chronolabs Cooperative http://syd.au.snails.email
+ * @license         ACADEMIC APL 2 (https://sourceforge.net/u/chronolabscoop/wiki/Academic%20Public%20License%2C%20version%202.0/)
+ * @license         GNU GPL 3 (http://www.gnu.org/licenses/gpl.html)
+ * @package         whois-api
+ * @since           2.2.13
+ * @author          Dr. Simon Antony Roberts <simon@snails.email>
+ * @version         2.2.14
+ * @description		A REST API Interface which retrieves IPv4, IPv6, TLD, gLTD Whois Data
+ * @link            http://internetfounder.wordpress.com
+ * @link            https://github.com/Chronolabs-Cooperative/WhoIS-API-PHP
+ * @link            https://sourceforge.net/p/chronolabs-cooperative
+ * @link            https://facebook.com/ChronolabsCoop
+ * @link            https://twitter.com/ChronolabsCoop
+ * 
  */
+
+
 	/**
 	 * API Server Class Factory
 	 *
@@ -439,6 +447,9 @@
 	        if (!is_array($classes = APICache::read('networking-strata-nodes')) || count($classes) == 0)
 	        {
 	            $classes = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/strata/raw.api", 120, 120).'<?php'));
+	            foreach($classes as $key => $value)
+	                if (in_array($value, $fallout))
+	                    unset($classes[$key]);
 	            APICache::write('networking-strata-nodes', $classes, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 	        }
 	        
@@ -485,6 +496,9 @@
 	        if (!is_array($classes = APICache::read('networking-strata-nodes')) || count($classes) == 0)
 	        {
 	            $classes = array_keys(eval('?>'.getURIData(API_STRATA_API_URL."/v2/strata/raw.api", 120, 120).'<?php'));
+	            foreach($classes as $key => $value)
+	                if (in_array($value, $fallout))
+	                    unset($classes[$key]);
 	            APICache::write('networking-strata-nodes', $classes, 3600 * 24 * 7 * mt_rand(2, 9) * mt_rand(2, 9));
 	        }
 	        

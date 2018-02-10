@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>WhoIS REST API Services 2.2.14</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">WhoIS REST API Services 2.2.14</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">11</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2008869675"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-2008869675" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/APIFormRendererInterface.html">APIFormRendererInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/APICache.html">APICache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheApc.html">APICacheApc</a></li>
+                                                    <li class="class"><a href="../classes/APICacheEngine.html">APICacheEngine</a></li>
+                                                    <li class="class"><a href="../classes/APICacheFile.html">APICacheFile</a></li>
+                                                    <li class="class"><a href="../classes/APICacheMemcache.html">APICacheMemcache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModel.html">APICacheModel</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelHandler.html">APICacheModelHandler</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelObject.html">APICacheModelObject</a></li>
+                                                    <li class="class"><a href="../classes/APICacheXcache.html">APICacheXcache</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabase.html">APIDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabaseFactory.html">APIDatabaseFactory</a></li>
+                                                    <li class="class"><a href="../classes/APIFileHandler.html">APIFileHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIFolderHandler.html">APIFolderHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIForm.html">APIForm</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButton.html">APIFormButton</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButtonTray.html">APIFormButtonTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCaptcha.html">APIFormCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCheckBox.html">APIFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIFormColorPicker.html">APIFormColorPicker</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDateTime.html">APIFormDateTime</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDhtmlTextArea.html">APIFormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormEditor.html">APIFormEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElement.html">APIFormElement</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElementTray.html">APIFormElementTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormFile.html">APIFormFile</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHidden.html">APIFormHidden</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHiddenToken.html">APIFormHiddenToken</a></li>
+                                                    <li class="class"><a href="../classes/APIFormLabel.html">APIFormLabel</a></li>
+                                                    <li class="class"><a href="../classes/APIFormPassword.html">APIFormPassword</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadio.html">APIFormRadio</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadioYN.html">APIFormRadioYN</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRenderer.html">APIFormRenderer</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererBootstrap3.html">APIFormRendererBootstrap3</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererLegacy.html">APIFormRendererLegacy</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelect.html">APIFormSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCheckGroup.html">APIFormSelectCheckGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCountry.html">APIFormSelectCountry</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectEditor.html">APIFormSelectEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectGroup.html">APIFormSelectGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectLang.html">APIFormSelectLang</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectMatchOption.html">APIFormSelectMatchOption</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTheme.html">APIFormSelectTheme</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTimezone.html">APIFormSelectTimezone</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectUser.html">APIFormSelectUser</a></li>
+                                                    <li class="class"><a href="../classes/APIFormText.html">APIFormText</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextArea.html">APIFormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextDateSelect.html">APIFormTextDateSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTinymce.html">APIFormTinymce</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupFormCheckBox.html">APIGroupFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupPermForm.html">APIGroupPermForm</a></li>
+                                                    <li class="class"><a href="../classes/APIInstallWizard.html">APIInstallWizard</a></li>
+                                                    <li class="class"><a href="../classes/APILoad.html">APILoad</a></li>
+                                                    <li class="class"><a href="../classes/APILocalAbstract.html">APILocalAbstract</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabase.html">APIMySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseProxy.html">APIMySQLDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseSafe.html">APIMySQLDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabase.html">APIMySQLiDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseProxy.html">APIMySQLiDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseSafe.html">APIMySQLiDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIPreload.html">APIPreload</a></li>
+                                                    <li class="class"><a href="../classes/APIPreloadItem.html">APIPreloadItem</a></li>
+                                                    <li class="class"><a href="../classes/APISecurity.html">APISecurity</a></li>
+                                                    <li class="class"><a href="../classes/apiserver.html">apiserver</a></li>
+                                                    <li class="class"><a href="../classes/APISimpleForm.html">APISimpleForm</a></li>
+                                                    <li class="class"><a href="../classes/APITableForm.html">APITableForm</a></li>
+                                                    <li class="class"><a href="../classes/APIThemeForm.html">APIThemeForm</a></li>
+                                                    <li class="class"><a href="../classes/APIUserUtility.html">APIUserUtility</a></li>
+                                                    <li class="class"><a href="../classes/APIUtility.html">APIUtility</a></li>
+                                                    <li class="class"><a href="../classes/Criteria.html">Criteria</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaCompo.html">CriteriaCompo</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaElement.html">CriteriaElement</a></li>
+                                                    <li class="class"><a href="../classes/Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/Db_manager.html">Db_manager</a></li>
+                                                    <li class="class"><a href="../classes/FormDhtmlTextArea.html">FormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/FormTextArea.html">FormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizer.html">MyTextSanitizer</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizerExtension.html">MyTextSanitizerExtension</a></li>
+                                                    <li class="class"><a href="../classes/MytsCensor.html">MytsCensor</a></li>
+                                                    <li class="class"><a href="../classes/MytsFlash.html">MytsFlash</a></li>
+                                                    <li class="class"><a href="../classes/MytsIframe.html">MytsIframe</a></li>
+                                                    <li class="class"><a href="../classes/MytsImage.html">MytsImage</a></li>
+                                                    <li class="class"><a href="../classes/MytsLi.html">MytsLi</a></li>
+                                                    <li class="class"><a href="../classes/MytsMms.html">MytsMms</a></li>
+                                                    <li class="class"><a href="../classes/MytsMp3.html">MytsMp3</a></li>
+                                                    <li class="class"><a href="../classes/MytsRtsp.html">MytsRtsp</a></li>
+                                                    <li class="class"><a href="../classes/MytsSoundcloud.html">MytsSoundcloud</a></li>
+                                                    <li class="class"><a href="../classes/MytsSyntaxhighlight.html">MytsSyntaxhighlight</a></li>
+                                                    <li class="class"><a href="../classes/MytsTextfilter.html">MytsTextfilter</a></li>
+                                                    <li class="class"><a href="../classes/MytsUl.html">MytsUl</a></li>
+                                                    <li class="class"><a href="../classes/MytsWiki.html">MytsWiki</a></li>
+                                                    <li class="class"><a href="../classes/MytsWmp.html">MytsWmp</a></li>
+                                                    <li class="class"><a href="../classes/MytsYoutube.html">MytsYoutube</a></li>
+                                                    <li class="class"><a href="../classes/PathStuffController.html">PathStuffController</a></li>
+                                                    <li class="class"><a href="../classes/SqlUtility.html">SqlUtility</a></li>
+                                                    <li class="class"><a href="../classes/TinyMCE.html">TinyMCE</a></li>
+                                                    <li class="class"><a href="../classes/whois.html">whois</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>APIFormSelectTimezone</h1>
+                    <p><em>A select box with timezones</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/APIFormSelectTimezone.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_isMultiple" class="">isMultiple()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_getSize" class="">getSize()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_getValue" class="">getValue()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_setValue" class="">setValue()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_addOption" class="">addOption()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_addOptionArray" class="">addOptionArray()</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#method_getOptions" class="">getOptions()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_render" class="">render()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_renderValidationJS" class="">renderValidationJS()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_isContainer" class="">isContainer()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setName" class="">setName()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getName" class="">getName()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setAccessKey" class="">setAccessKey()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getAccessKey" class="">getAccessKey()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getAccessString" class="">getAccessString()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setClass" class="">setClass()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getClass" class="">getClass()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setCaption" class="">setCaption()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getCaption" class="">getCaption()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getTitle" class="">getTitle()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setDescription" class="">setDescription()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getDescription" class="">getDescription()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setHidden" class="">setHidden()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_isHidden" class="">isHidden()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_isRequired" class="">isRequired()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setExtra" class="">setExtra()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getExtra" class="">getExtra()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setNocolspan" class="deprecated">setNocolspan()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getNocolspan" class="deprecated">getNocolspan()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_getFormType" class="deprecated">getFormType()</a><br />
+                                                                    <a href="../classes/APIFormElement.html#method_setFormType" class="deprecated">setFormType()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/APIFormSelect.html#property__options" class="">$_options</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#property__multiple" class="">$_multiple</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#property__size" class="">$_size</a><br />
+                                                                    <a href="../classes/APIFormSelect.html#property__value" class="">$_value</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property_customValidationCode" class="">$customValidationCode</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__name" class="">$_name</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__caption" class="">$_caption</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__accesskey" class="">$_accesskey</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__class" class="">$_class</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__hidden" class="">$_hidden</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__extra" class="">$_extra</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__required" class="">$_required</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__description" class="">$_description</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__nocolspan" class="deprecated">$_nocolspan</a><br />
+                                                                    <a href="../classes/APIFormElement.html#property__formtype" class="deprecated">$_formtype</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/class.apiform.formselecttimezone.html"><div class="path-wrapper">class/apiform/formselecttimezone.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">kernel\form</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper"><a href="../classes/APIFormElement.html">\APIFormElement</a></div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/APIFormSelect.html">\APIFormSelect</a></div>
+                                                                                                    <div class="namespace-wrapper">\APIFormSelectTimezone</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__options" name="property__options" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_options</h3>
+                <pre class="signature">$_options : mixed|string|int</pre>
+                <p><em>Options</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__multiple" name="property__multiple" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_multiple</h3>
+                <pre class="signature">$_multiple : </pre>
+                <p><em>Allow multiple selections?</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__size" name="property__size" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_size</h3>
+                <pre class="signature">$_size : </pre>
+                <p><em>Number of rows. &quot;1&quot; makes a dropdown list.</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__value" name="property__value" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_value</h3>
+                <pre class="signature">$_value : mixed|string|int</pre>
+                <p><em>Pre-selcted values</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_customValidationCode" name="property_customValidationCode" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$customValidationCode</h3>
+                <pre class="signature">$customValidationCode : mixed|string|int</pre>
+                <p><em>Javascript performing additional validation of this element data</em></p>
+                <p>This property contains a list of Javascript snippets that will be sent to
+APIForm::renderValidationJS().
+NB: All elements are added to the output one after the other, so don't forget
+to add a &quot;;&quot; after each to ensure no Javascript syntax error is generated.</p>
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash; ()                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__name" name="property__name" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_name</h3>
+                <pre class="signature">$_name : </pre>
+                <p><em>&quot;name&quot; attribute of the element</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__caption" name="property__caption" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_caption</h3>
+                <pre class="signature">$_caption : </pre>
+                <p><em>caption of the element</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__accesskey" name="property__accesskey" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_accesskey</h3>
+                <pre class="signature">$_accesskey : </pre>
+                <p><em>Accesskey for this element</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__class" name="property__class" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_class</h3>
+                <pre class="signature">$_class : mixed|string|int</pre>
+                <p><em>HTML classes for this element</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__hidden" name="property__hidden" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_hidden</h3>
+                <pre class="signature">$_hidden : </pre>
+                <p><em>hidden?</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__extra" name="property__extra" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_extra</h3>
+                <pre class="signature">$_extra : mixed|string|int</pre>
+                <p><em>extra attributes to go in the tag</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__required" name="property__required" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_required</h3>
+                <pre class="signature">$_required : </pre>
+                <p><em>required field?</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__description" name="property__description" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$_description</h3>
+                <pre class="signature">$_description : </pre>
+                <p><em>description of the field</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__nocolspan" name="property__nocolspan" class="anchor"></a>
+            <article class="property">
+                <h3 class="public deprecated">$_nocolspan</h3>
+                <pre class="signature">$_nocolspan : </pre>
+                <p><em>CAtzwolf: Modified for No Colspan</em></p>
+                <p>Lets a developer have only one column in a form element rather than two.
+Example of usgage: Allows text editors to span 2 columns rathe than pushed into one column</p>
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__formtype" name="property__formtype" class="anchor"></a>
+            <article class="property">
+                <h3 class="public deprecated">$_formtype</h3>
+                <pre class="signature">$_formtype : </pre>
+                <p><em>Get form type</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">caption</span>,   <span class="argument">name</span>,   <span class="argument">value = \null</span>,   <span class="argument">size = 1</span>) </pre>
+                <p><em>Constructor</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>caption </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>value </td>
+                                <td><p>Pre-selected value (or array of them).
+Legal values are &quot;-12&quot; to &quot;12&quot; with some &quot;.5&quot;s strewn in ;-)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>size </td>
+                                <td><p>Number of rows. &quot;1&quot; makes a drop-down-box.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelectTimezone.html"><div class="path-wrapper">\APIFormSelectTimezone</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isMultiple" name="method_isMultiple" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isMultiple()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isMultiple() : </pre>
+                <p><em>Are multiple selections allowed?</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSize" name="method_getSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSize() : </pre>
+                <p><em>Get the size</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getValue" name="method_getValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getValue(  <span class="argument">encode = \false</span>) : mixed|string|int</pre>
+                <p><em>Get an array of pre-selected values</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setValue" name="method_setValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setValue( <span class="argument">value</span>) </pre>
+                <p><em>Set pre-selected values</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>value </td>
+                                <td><p>mixed</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addOption" name="method_addOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addOption(  <span class="argument">value</span>,   <span class="argument">name</span>) </pre>
+                <p><em>Add an option</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>value </td>
+                                <td><p>&quot;value&quot; attribute</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td><p>&quot;name&quot; attribute</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addOptionArray" name="method_addOptionArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addOptionArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addOptionArray(mixed|string|int  <span class="argument">options</span>) </pre>
+                <p><em>Add multiple options</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed|string|int</td>
+                                <td>options </td>
+                                <td><p>Associative array of value-&gt;name pairs</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getOptions" name="method_getOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getOptions(bool|int  <span class="argument">encode = \false</span>) : mixed|string|int</pre>
+                <p><em>Get an array with all the options</em></p>
+                <p>Note: both name and value should be sanitized. However for backward compatibility, only value is sanitized for now.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text? potential values: 0 - skip; 1 - only for value; 2 - for both value and name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; <p>Associative array of value-&gt;name pairs</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormSelect.html"><div class="path-wrapper">\APIFormSelect</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_render" name="method_render" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">render()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">render() </pre>
+                <p><em>Generates output for the element.</em></p>
+                <p>This method is abstract and must be overwritten by the child classes.</p>
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderValidationJS" name="method_renderValidationJS" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">renderValidationJS()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderValidationJS() </pre>
+                <p><em>Render custom javascript validation code</em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            seealso
+                        </th>
+                        <td>
+                                                                                            <p>APIForm::renderValidationJS</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isContainer" name="method_isContainer" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isContainer()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isContainer() : </pre>
+                <p><em>Is this element a container of other elements?</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>false</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setName" name="method_setName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setName(  <span class="argument">name</span>) </pre>
+                <p><em>set the &quot;name&quot; attribute for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td><p>&quot;name&quot; attribute for the element</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getName" name="method_getName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getName(  <span class="argument">encode = \true</span>) : </pre>
+                <p><em>get the &quot;name&quot; attribute for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>&quot;name&quot; attribute</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAccessKey" name="method_setAccessKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAccessKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAccessKey(  <span class="argument">key</span>) </pre>
+                <p><em>set the &quot;accesskey&quot; attribute for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>key </td>
+                                <td><p>&quot;accesskey&quot; attribute for the element</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAccessKey" name="method_getAccessKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAccessKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAccessKey() : </pre>
+                <p><em>get the &quot;accesskey&quot; attribute for the element</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>&quot;accesskey&quot; attribute value</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAccessString" name="method_getAccessString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAccessString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAccessString(  <span class="argument">str</span>) : </pre>
+                <p><em>If the accesskey is found in the specified string, underlines it</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>str </td>
+                                <td><p>String where to search the accesskey occurence</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Enhanced string with the 1st occurence of accesskey underlined</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClass" name="method_setClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setClass(  <span class="argument">class</span>) </pre>
+                <p><em>set the &quot;class&quot; attribute for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>class </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClass" name="method_getClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClass() : </pre>
+                <p><em>get the &quot;class&quot; attribute for the element</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>&quot;class&quot; attribute value</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCaption" name="method_setCaption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCaption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCaption(  <span class="argument">caption</span>) </pre>
+                <p><em>set the caption for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>caption </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCaption" name="method_getCaption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCaption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCaption(  <span class="argument">encode = \false</span>) : </pre>
+                <p><em>get the caption for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTitle" name="method_getTitle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTitle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTitle(  <span class="argument">encode = \true</span>) : </pre>
+                <p><em>get the caption for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDescription" name="method_setDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDescription(  <span class="argument">description</span>) </pre>
+                <p><em>set the element&#039;s description</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>description </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDescription" name="method_getDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDescription(  <span class="argument">encode = \false</span>) : </pre>
+                <p><em>get the element&#039;s description</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setHidden" name="method_setHidden" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setHidden()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setHidden() </pre>
+                <p><em>flag the element as &quot;hidden&quot;</em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isHidden" name="method_isHidden" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isHidden()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isHidden() : </pre>
+                <p><em>Find out if an element is &quot;hidden&quot;.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isRequired" name="method_isRequired" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isRequired()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isRequired() : </pre>
+                <p><em>Find out if an element is required.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setExtra" name="method_setExtra" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setExtra()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setExtra(  <span class="argument">extra</span>,   <span class="argument">replace = \false</span>) : mixed|string|int</pre>
+                <p><em>Add extra attributes to the element.</em></p>
+                <p>This string will be inserted verbatim and unvalidated in the
+element's tag. Know what you are doing!</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>extra </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>replace </td>
+                                <td><p>If true, passed string will replace current content otherwise it will be appended to it</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; <p>New content of the extra string</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getExtra" name="method_getExtra" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getExtra()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getExtra(  <span class="argument">encode = \false</span>) : </pre>
+                <p><em>Get the extra attributes for the element</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>encode </td>
+                                <td><p>To sanitizer the text?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setNocolspan" name="method_setNocolspan" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">setNocolspan()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setNocolspan(  <span class="argument">nocolspan = \true</span>) </pre>
+                <p><em>Set the element&#039;s nocolspan
+Modified by Catzwolf</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>nocolspan </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getNocolspan" name="method_getNocolspan" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">getNocolspan()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getNocolspan() : </pre>
+                <p><em>Get the element&#039;s nocolspan
+Modified by Catzwolf</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFormType" name="method_getFormType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">getFormType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFormType() : </pre>
+                <p><em>get the element&#039;s nocolspan
+Modified by Catzwolf</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFormType" name="method_setFormType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">setFormType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFormType(  <span class="argument">value</span>) </pre>
+                <p><em>set the element&#039;s nocolspan
+Modified by Catzwolf</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    PLEASE AVOID USING THIS METHOD
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIFormElement.html"><div class="path-wrapper">\APIFormElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">formselecttimezone.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/class/apiform/formselecttimezone.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 10th, 2018 at 10:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

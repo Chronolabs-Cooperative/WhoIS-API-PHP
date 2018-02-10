@@ -1,22 +1,27 @@
 <?php
 /**
- * Extension to mimetype lookup table
+ * WhoIS REST Services API
  *
- * This file is provided as an helper for objects who need to perform filename to mimetype translations.
- * Common types have been provided, but feel free to add your own one if you need it.
- * <br><br>
- * See the enclosed file LICENSE for licensing information.
- * If you did not receive this file, get it at http://www.gnu.org/licenses/gpl-2.0.html
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 API Project (www.api.org)
- * @license             GNU GPL 2 (http://www.gnu.org/licenses/gpl-2.0.html)
- * @author              Skalpa Keo <skalpa@api.org>
- * @since               2.0.9.3
+ * @copyright       Chronolabs Cooperative http://syd.au.snails.email
+ * @license         ACADEMIC APL 2 (https://sourceforge.net/u/chronolabscoop/wiki/Academic%20Public%20License%2C%20version%202.0/)
+ * @license         GNU GPL 3 (http://www.gnu.org/licenses/gpl.html)
+ * @package         whois-api
+ * @since           2.2.13
+ * @author          Dr. Simon Antony Roberts <simon@snails.email>
+ * @version         2.2.14
+ * @description		A REST API Interface which retrieves IPv4, IPv6, TLD, gLTD Whois Data
+ * @link            http://internetfounder.wordpress.com
+ * @link            https://github.com/Chronolabs-Cooperative/WhoIS-API-PHP
+ * @link            https://sourceforge.net/p/chronolabs-cooperative
+ * @link            https://facebook.com/ChronolabsCoop
+ * @link            https://twitter.com/ChronolabsCoop
  * 
- * @deprecated
  */
-defined('API_ROOT_PATH') || exit('Restricted access');
 
-$GLOBALS['apiLogger']->addDeprecated("'/class/mimetypes.inc.php' is deprecated, use '/include/mimetypes.inc.php' directly.");
-
-return include API_ROOT_PATH . '/include/mimetypes.inc.php';

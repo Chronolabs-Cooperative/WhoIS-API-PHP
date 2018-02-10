@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>WhoIS REST API Services 2.2.14</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">WhoIS REST API Services 2.2.14</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">11</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2048020458"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-2048020458" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/APIFormRendererInterface.html">APIFormRendererInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/APICache.html">APICache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheApc.html">APICacheApc</a></li>
+                                                    <li class="class"><a href="../classes/APICacheEngine.html">APICacheEngine</a></li>
+                                                    <li class="class"><a href="../classes/APICacheFile.html">APICacheFile</a></li>
+                                                    <li class="class"><a href="../classes/APICacheMemcache.html">APICacheMemcache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModel.html">APICacheModel</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelHandler.html">APICacheModelHandler</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelObject.html">APICacheModelObject</a></li>
+                                                    <li class="class"><a href="../classes/APICacheXcache.html">APICacheXcache</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabase.html">APIDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabaseFactory.html">APIDatabaseFactory</a></li>
+                                                    <li class="class"><a href="../classes/APIFileHandler.html">APIFileHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIFolderHandler.html">APIFolderHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIForm.html">APIForm</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButton.html">APIFormButton</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButtonTray.html">APIFormButtonTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCaptcha.html">APIFormCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCheckBox.html">APIFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIFormColorPicker.html">APIFormColorPicker</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDateTime.html">APIFormDateTime</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDhtmlTextArea.html">APIFormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormEditor.html">APIFormEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElement.html">APIFormElement</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElementTray.html">APIFormElementTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormFile.html">APIFormFile</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHidden.html">APIFormHidden</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHiddenToken.html">APIFormHiddenToken</a></li>
+                                                    <li class="class"><a href="../classes/APIFormLabel.html">APIFormLabel</a></li>
+                                                    <li class="class"><a href="../classes/APIFormPassword.html">APIFormPassword</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadio.html">APIFormRadio</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadioYN.html">APIFormRadioYN</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRenderer.html">APIFormRenderer</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererBootstrap3.html">APIFormRendererBootstrap3</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererLegacy.html">APIFormRendererLegacy</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelect.html">APIFormSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCheckGroup.html">APIFormSelectCheckGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCountry.html">APIFormSelectCountry</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectEditor.html">APIFormSelectEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectGroup.html">APIFormSelectGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectLang.html">APIFormSelectLang</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectMatchOption.html">APIFormSelectMatchOption</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTheme.html">APIFormSelectTheme</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTimezone.html">APIFormSelectTimezone</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectUser.html">APIFormSelectUser</a></li>
+                                                    <li class="class"><a href="../classes/APIFormText.html">APIFormText</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextArea.html">APIFormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextDateSelect.html">APIFormTextDateSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTinymce.html">APIFormTinymce</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupFormCheckBox.html">APIGroupFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupPermForm.html">APIGroupPermForm</a></li>
+                                                    <li class="class"><a href="../classes/APIInstallWizard.html">APIInstallWizard</a></li>
+                                                    <li class="class"><a href="../classes/APILoad.html">APILoad</a></li>
+                                                    <li class="class"><a href="../classes/APILocalAbstract.html">APILocalAbstract</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabase.html">APIMySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseProxy.html">APIMySQLDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseSafe.html">APIMySQLDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabase.html">APIMySQLiDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseProxy.html">APIMySQLiDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseSafe.html">APIMySQLiDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIPreload.html">APIPreload</a></li>
+                                                    <li class="class"><a href="../classes/APIPreloadItem.html">APIPreloadItem</a></li>
+                                                    <li class="class"><a href="../classes/APISecurity.html">APISecurity</a></li>
+                                                    <li class="class"><a href="../classes/apiserver.html">apiserver</a></li>
+                                                    <li class="class"><a href="../classes/APISimpleForm.html">APISimpleForm</a></li>
+                                                    <li class="class"><a href="../classes/APITableForm.html">APITableForm</a></li>
+                                                    <li class="class"><a href="../classes/APIThemeForm.html">APIThemeForm</a></li>
+                                                    <li class="class"><a href="../classes/APIUserUtility.html">APIUserUtility</a></li>
+                                                    <li class="class"><a href="../classes/APIUtility.html">APIUtility</a></li>
+                                                    <li class="class"><a href="../classes/Criteria.html">Criteria</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaCompo.html">CriteriaCompo</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaElement.html">CriteriaElement</a></li>
+                                                    <li class="class"><a href="../classes/Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/Db_manager.html">Db_manager</a></li>
+                                                    <li class="class"><a href="../classes/FormDhtmlTextArea.html">FormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/FormTextArea.html">FormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizer.html">MyTextSanitizer</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizerExtension.html">MyTextSanitizerExtension</a></li>
+                                                    <li class="class"><a href="../classes/MytsCensor.html">MytsCensor</a></li>
+                                                    <li class="class"><a href="../classes/MytsFlash.html">MytsFlash</a></li>
+                                                    <li class="class"><a href="../classes/MytsIframe.html">MytsIframe</a></li>
+                                                    <li class="class"><a href="../classes/MytsImage.html">MytsImage</a></li>
+                                                    <li class="class"><a href="../classes/MytsLi.html">MytsLi</a></li>
+                                                    <li class="class"><a href="../classes/MytsMms.html">MytsMms</a></li>
+                                                    <li class="class"><a href="../classes/MytsMp3.html">MytsMp3</a></li>
+                                                    <li class="class"><a href="../classes/MytsRtsp.html">MytsRtsp</a></li>
+                                                    <li class="class"><a href="../classes/MytsSoundcloud.html">MytsSoundcloud</a></li>
+                                                    <li class="class"><a href="../classes/MytsSyntaxhighlight.html">MytsSyntaxhighlight</a></li>
+                                                    <li class="class"><a href="../classes/MytsTextfilter.html">MytsTextfilter</a></li>
+                                                    <li class="class"><a href="../classes/MytsUl.html">MytsUl</a></li>
+                                                    <li class="class"><a href="../classes/MytsWiki.html">MytsWiki</a></li>
+                                                    <li class="class"><a href="../classes/MytsWmp.html">MytsWmp</a></li>
+                                                    <li class="class"><a href="../classes/MytsYoutube.html">MytsYoutube</a></li>
+                                                    <li class="class"><a href="../classes/PathStuffController.html">PathStuffController</a></li>
+                                                    <li class="class"><a href="../classes/SqlUtility.html">SqlUtility</a></li>
+                                                    <li class="class"><a href="../classes/TinyMCE.html">TinyMCE</a></li>
+                                                    <li class="class"><a href="../classes/whois.html">whois</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>APIMySQLiDatabase</h1>
+                    <p><em>connection to a MySQLi database using MySQLii extension</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/APIDatabase.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/APIDatabase.html#method_setLogger" class="">setLogger()</a><br />
+                                                                    <a href="../classes/APIDatabase.html#method_setPrefix" class="">setPrefix()</a><br />
+                                                                    <a href="../classes/APIDatabase.html#method_prefix" class="">prefix()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_connect" class="">connect()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_genId" class="">genId()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_fetchRow" class="">fetchRow()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_fetchArray" class="">fetchArray()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_fetchBoth" class="">fetchBoth()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_fetchObject" class="">fetchObject()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getInsertId" class="">getInsertId()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getRowsNum" class="">getRowsNum()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getAffectedRows" class="">getAffectedRows()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_close" class="">close()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_freeRecordSet" class="">freeRecordSet()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_error" class="">error()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_errno" class="">errno()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_quoteString" class="">quoteString()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_quote" class="">quote()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_escape" class="">escape()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_queryF" class="">queryF()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_query" class="">query()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_queryFromFile" class="">queryFromFile()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getFieldName" class="">getFieldName()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getFieldType" class="">getFieldType()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getFieldsNum" class="">getFieldsNum()</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#method_getServerVersion" class="">getServerVersion()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/APIDatabase.html#property_prefix" class="">$prefix</a><br />
+                                                                    <a href="../classes/APIDatabase.html#property_logger" class="">$logger</a><br />
+                                                                    <a href="../classes/APIDatabase.html#property_allowWebChanges" class="">$allowWebChanges</a><br />
+                                                                    <a href="../classes/APIMySQLiDatabase.html#property_conn" class="">$conn</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/class.database.mysqlidatabase.html"><div class="path-wrapper">class/database/mysqlidatabase.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">class\database</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/APIDatabase.html">\APIDatabase</a></div>
+                                                                                                    <div class="namespace-wrapper">\APIMySQLiDatabase</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                                                        
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                copyright
+                            </th>
+                            <td>
+                                                                                                        <p>(c) 2000-2016 API Project (www.api.org)</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_prefix" name="property_prefix" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$prefix</h3>
+                <pre class="signature">$prefix : </pre>
+                <p><em>Prefix for tables in the database</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_logger" name="property_logger" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$logger</h3>
+                <pre class="signature">$logger : </pre>
+                <p><em>reference to a {@link APILogger} object</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash; APILogger                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/APILogger.html"><span class="namespace-wrapper">\APILogger</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_allowWebChanges" name="property_allowWebChanges" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$allowWebChanges</h3>
+                <pre class="signature">$allowWebChanges : </pre>
+                <p><em>If statements that modify the database are selected</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_conn" name="property_conn" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$conn</h3>
+                <pre class="signature">$conn : \APIDatabase|\MySQLii</pre>
+                <p><em>Database connection</em></p>
+                
+
+                                <h4>Type</h4>
+                \APIDatabase|\MySQLii
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em>APIDatabase constructor.</em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLogger" name="method_setLogger" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLogger()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLogger(\APILogger  <span class="argument">logger</span>) </pre>
+                <p><em>assign a {@link APILogger} object to the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\APILogger</td>
+                                <td>logger </td>
+                                <td><p>reference to a {@link APILogger} object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/APILogger.html"><span class="namespace-wrapper">\APILogger</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPrefix" name="method_setPrefix" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPrefix()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPrefix(  <span class="argument">value</span>) </pre>
+                <p><em>set the prefix for tables in the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>value </td>
+                                <td><p>table prefix</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prefix" name="method_prefix" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prefix()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prefix(  <span class="argument">tablename</span>) : </pre>
+                <p><em>attach the prefix.&#039;_&#039; to a given tablename</em></p>
+                <p>if tablename is empty, only prefix will be returned</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>tablename </td>
+                                <td><p>tablename</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>prefixed tablename, just prefix if tablename is empty</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIDatabase.html"><div class="path-wrapper">\APIDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_connect" name="method_connect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">connect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">connect(  <span class="argument">selectdb = \true</span>) : </pre>
+                <p><em>connect to the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>selectdb </td>
+                                <td><p>select the database now?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>successful?</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_genId" name="method_genId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">genId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">genId(  <span class="argument">sequence</span>) : </pre>
+                <p><em>generate an ID for a new row</em></p>
+                <p>This is for compatibility only. Will always return 0, because MySQLi supports
+autoincrement for primary keys.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>sequence </td>
+                                <td><p>name of the sequence from which to get the next ID</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>always 0, because MySQLi has support for autoincrement</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchRow" name="method_fetchRow" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchRow()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchRow(\mysqli_result  <span class="argument">result</span>) : array|bool</pre>
+                <p><em>Get a result row as an enumerated array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array|bool
+                                            &mdash; <p>false on end of data</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchArray" name="method_fetchArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchArray(\mysqli_result  <span class="argument">result</span>) : array|bool</pre>
+                <p><em>Fetch a result row as an associative array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array|bool
+                                            &mdash; <p>false on end of data</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchBoth" name="method_fetchBoth" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchBoth()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchBoth(\mysqli_result  <span class="argument">result</span>) : array|bool</pre>
+                <p><em>Fetch a result row as an associative array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array|bool
+                                            &mdash; <p>false on end of data</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fetchObject" name="method_fetchObject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fetchObject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fetchObject(  <span class="argument">result</span>) : \stdClass|bool</pre>
+                <p><em>APIMySQLiiDatabase::fetchObjected()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \stdClass|bool
+                                            &mdash; <p>false on end of data</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInsertId" name="method_getInsertId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInsertId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInsertId() : </pre>
+                <p><em>Get the ID generated from the previous INSERT operation</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRowsNum" name="method_getRowsNum" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRowsNum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRowsNum(\mysqli_result  <span class="argument">result</span>) : </pre>
+                <p><em>Get number of rows in result</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAffectedRows" name="method_getAffectedRows" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAffectedRows()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAffectedRows() : </pre>
+                <p><em>Get number of affected rows</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_close" name="method_close" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">close()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">close() : </pre>
+                <p><em>Close MySQLi connection</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_freeRecordSet" name="method_freeRecordSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">freeRecordSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">freeRecordSet(\mysqli_result  <span class="argument">result</span>) : </pre>
+                <p><em>will free all memory associated with the result identifier result.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td><p>result</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_error" name="method_error" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">error()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">error() : </pre>
+                <p><em>Returns the text of the error message from previous MySQLi operation</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Returns the error text from the last MySQLi function, or '' (the empty string) if no error occurred.</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_errno" name="method_errno" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">errno()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">errno() : </pre>
+                <p><em>Returns the numerical value of the error message from previous MySQLi operation</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>Returns the error number from the last MySQLi function, or 0 (zero) if no error occurred.</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteString" name="method_quoteString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteString(  <span class="argument">str</span>) : </pre>
+                <p><em>Returns escaped string text with single quotes around it to be safely stored in database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>str </td>
+                                <td><p>unescaped string text</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>escaped string text with single quotes around</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quote" name="method_quote" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quote()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quote(  <span class="argument">string</span>) : </pre>
+                <p><em>Quotes a string for use in a query.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>string </td>
+                                <td><p>string to quote/escape for use in query</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_escape" name="method_escape" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">escape()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">escape(  <span class="argument">string</span>) : </pre>
+                <p><em>Escapes a string for use in a query. Does not add surrounding quotes.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>string </td>
+                                <td><p>string to escape</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_queryF" name="method_queryF" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">queryF()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">queryF(  <span class="argument">sql</span>,   <span class="argument">limit</span>,   <span class="argument">start</span>) : \mysqli_result|bool</pre>
+                <p><em>perform a query on the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>sql </td>
+                                <td><p>a valid MySQLi query</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>limit </td>
+                                <td><p>number of records to return</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>start </td>
+                                <td><p>offset of first record to return</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \mysqli_result|bool
+                                            &mdash; <p>query result or FALSE if successful
+or TRUE if successful and no result</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_query" name="method_query" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">query()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">query(  <span class="argument">sql</span>,   <span class="argument">limit</span>,   <span class="argument">start</span>) </pre>
+                <p><em>perform a query</em></p>
+                <p>This method is empty and does nothing! It should therefore only be
+used if nothing is exactly what you want done! ;-)</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>sql </td>
+                                <td><p>a valid MySQLi query</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>limit </td>
+                                <td><p>number of records to return</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>start </td>
+                                <td><p>offset of first record to return</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_queryFromFile" name="method_queryFromFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">queryFromFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">queryFromFile(  <span class="argument">file</span>) : </pre>
+                <p><em>perform queries from SQL dump file in a batch</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>file </td>
+                                <td><p>file path to an SQL dump file</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>FALSE if failed reading SQL file or TRUE if the file has been read and queries executed</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFieldName" name="method_getFieldName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFieldName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFieldName(\mysqli_result  <span class="argument">result</span>,   <span class="argument">offset</span>) : </pre>
+                <p><em>Get field name</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td><p>query result</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>offset </td>
+                                <td><p>numerical field index</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFieldType" name="method_getFieldType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFieldType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFieldType(\mysqli_result  <span class="argument">result</span>,   <span class="argument">offset</span>) : </pre>
+                <p><em>Get field type</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td><p>query result</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>offset </td>
+                                <td><p>numerical field index</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFieldsNum" name="method_getFieldsNum" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFieldsNum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFieldsNum(\mysqli_result  <span class="argument">result</span>) : </pre>
+                <p><em>Get number of fields in result</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\mysqli_result</td>
+                                <td>result </td>
+                                <td><p>query result</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getServerVersion" name="method_getServerVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getServerVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getServerVersion() : </pre>
+                <p><em>getServerVersion get version of the MySQLi server</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/APIMySQLiDatabase.html"><div class="path-wrapper">\APIMySQLiDatabase</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">mysqlidatabase.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/class/database/mysqlidatabase.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 10th, 2018 at 10:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Folder engine For API
+ * WhoIS REST Services API
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -9,37 +9,22 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2005-2016 API Project (www.api.org)
- * @license             GNU GPL 2 (http://www.gnu.org/licenses/gpl-2.0.html)
- * @package             class
- * @subpackage          file
- * @since               2.3.0
- * @author              Taiwen Jiang <phppp@users.sourceforge.net>
+ * @copyright       Chronolabs Cooperative http://syd.au.snails.email
+ * @license         ACADEMIC APL 2 (https://sourceforge.net/u/chronolabscoop/wiki/Academic%20Public%20License%2C%20version%202.0/)
+ * @license         GNU GPL 3 (http://www.gnu.org/licenses/gpl.html)
+ * @package         whois-api
+ * @since           2.2.13
+ * @author          Dr. Simon Antony Roberts <simon@snails.email>
+ * @version         2.2.14
+ * @description		A REST API Interface which retrieves IPv4, IPv6, TLD, gLTD Whois Data
+ * @link            http://internetfounder.wordpress.com
+ * @link            https://github.com/Chronolabs-Cooperative/WhoIS-API-PHP
+ * @link            https://sourceforge.net/p/chronolabs-cooperative
+ * @link            https://facebook.com/ChronolabsCoop
+ * @link            https://twitter.com/ChronolabsCoop
+ * 
  */
 
-/**
- * Convenience class for handling directories.
- *
- * PHP versions 4 and 5
- *
- * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
- * Copyright 2005-2008, Cake Software Foundation, Inc.
- *                                     1785 E. Sahara Avenue, Suite 490-204
- *                                     Las Vegas, Nevada 89104
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @filesource
- * @copyright  Copyright 2005-2008, Cake Software Foundation, Inc.
- * @link       http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
- * @package    cake
- * @subpackage cake.cake.libs
- * @since      CakePHP(tm) v 0.2.9
- * @modifiedby $LastChangedBy: beckmi $
- * @lastmodified $Date: 2015-06-06 17:59:41 -0400 (Sat, 06 Jun 2015) $
- * @license    http://www.opensource.org/licenses/mit-license.php The MIT License
- */
 
 /**
  * Folder structure browser, lists folders and files.

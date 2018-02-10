@@ -1,6 +1,6 @@
 <?php
 /**
- * API editor
+ * WhoIS REST Services API
  *
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -9,12 +9,22 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       (c) 2000-2016 API Project (www.api.org)
- * @license             GNU GPL 2 (http://www.gnu.org/licenses/gpl-2.0.html)
- * @author              Taiwen Jiang (phppp or D.J.) <php_pp@hotmail.com>
- * @since               2.3.0
- * @package             apieditor
+ * @copyright       Chronolabs Cooperative http://syd.au.snails.email
+ * @license         ACADEMIC APL 2 (https://sourceforge.net/u/chronolabscoop/wiki/Academic%20Public%20License%2C%20version%202.0/)
+ * @license         GNU GPL 3 (http://www.gnu.org/licenses/gpl.html)
+ * @package         whois-api
+ * @since           2.2.13
+ * @author          Dr. Simon Antony Roberts <simon@snails.email>
+ * @version         2.2.14
+ * @description		A REST API Interface which retrieves IPv4, IPv6, TLD, gLTD Whois Data
+ * @link            http://internetfounder.wordpress.com
+ * @link            https://github.com/Chronolabs-Cooperative/WhoIS-API-PHP
+ * @link            https://sourceforge.net/p/chronolabs-cooperative
+ * @link            https://facebook.com/ChronolabsCoop
+ * @link            https://twitter.com/ChronolabsCoop
+ * 
  */
+
 return $config = array(
     'class' => 'FormTextArea',
     'file' => API_ROOT_PATH . '/class/apieditor/textarea/textarea.php',

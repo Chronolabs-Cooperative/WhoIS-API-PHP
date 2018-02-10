@@ -2,7 +2,7 @@
 
 # Internet WhoIS REST API Services
 
-## Version: 2.2.13 (final minor)
+## Version: 2.2.14 (final major)
 
 ### Author: Dr. Simon Antony Roberts <simon@snails.email>
 

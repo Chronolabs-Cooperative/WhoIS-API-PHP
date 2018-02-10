@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>WhoIS REST API Services 2.2.14</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">WhoIS REST API Services 2.2.14</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">11</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1541496240"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1541496240" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/APIFormRendererInterface.html">APIFormRendererInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/APICache.html">APICache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheApc.html">APICacheApc</a></li>
+                                                    <li class="class"><a href="../classes/APICacheEngine.html">APICacheEngine</a></li>
+                                                    <li class="class"><a href="../classes/APICacheFile.html">APICacheFile</a></li>
+                                                    <li class="class"><a href="../classes/APICacheMemcache.html">APICacheMemcache</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModel.html">APICacheModel</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelHandler.html">APICacheModelHandler</a></li>
+                                                    <li class="class"><a href="../classes/APICacheModelObject.html">APICacheModelObject</a></li>
+                                                    <li class="class"><a href="../classes/APICacheXcache.html">APICacheXcache</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabase.html">APIDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIDatabaseFactory.html">APIDatabaseFactory</a></li>
+                                                    <li class="class"><a href="../classes/APIFileHandler.html">APIFileHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIFolderHandler.html">APIFolderHandler</a></li>
+                                                    <li class="class"><a href="../classes/APIForm.html">APIForm</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButton.html">APIFormButton</a></li>
+                                                    <li class="class"><a href="../classes/APIFormButtonTray.html">APIFormButtonTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCaptcha.html">APIFormCaptcha</a></li>
+                                                    <li class="class"><a href="../classes/APIFormCheckBox.html">APIFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIFormColorPicker.html">APIFormColorPicker</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDateTime.html">APIFormDateTime</a></li>
+                                                    <li class="class"><a href="../classes/APIFormDhtmlTextArea.html">APIFormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormEditor.html">APIFormEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElement.html">APIFormElement</a></li>
+                                                    <li class="class"><a href="../classes/APIFormElementTray.html">APIFormElementTray</a></li>
+                                                    <li class="class"><a href="../classes/APIFormFile.html">APIFormFile</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHidden.html">APIFormHidden</a></li>
+                                                    <li class="class"><a href="../classes/APIFormHiddenToken.html">APIFormHiddenToken</a></li>
+                                                    <li class="class"><a href="../classes/APIFormLabel.html">APIFormLabel</a></li>
+                                                    <li class="class"><a href="../classes/APIFormPassword.html">APIFormPassword</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadio.html">APIFormRadio</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRadioYN.html">APIFormRadioYN</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRenderer.html">APIFormRenderer</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererBootstrap3.html">APIFormRendererBootstrap3</a></li>
+                                                    <li class="class"><a href="../classes/APIFormRendererLegacy.html">APIFormRendererLegacy</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelect.html">APIFormSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCheckGroup.html">APIFormSelectCheckGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectCountry.html">APIFormSelectCountry</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectEditor.html">APIFormSelectEditor</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectGroup.html">APIFormSelectGroup</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectLang.html">APIFormSelectLang</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectMatchOption.html">APIFormSelectMatchOption</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTheme.html">APIFormSelectTheme</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectTimezone.html">APIFormSelectTimezone</a></li>
+                                                    <li class="class"><a href="../classes/APIFormSelectUser.html">APIFormSelectUser</a></li>
+                                                    <li class="class"><a href="../classes/APIFormText.html">APIFormText</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextArea.html">APIFormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTextDateSelect.html">APIFormTextDateSelect</a></li>
+                                                    <li class="class"><a href="../classes/APIFormTinymce.html">APIFormTinymce</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupFormCheckBox.html">APIGroupFormCheckBox</a></li>
+                                                    <li class="class"><a href="../classes/APIGroupPermForm.html">APIGroupPermForm</a></li>
+                                                    <li class="class"><a href="../classes/APIInstallWizard.html">APIInstallWizard</a></li>
+                                                    <li class="class"><a href="../classes/APILoad.html">APILoad</a></li>
+                                                    <li class="class"><a href="../classes/APILocalAbstract.html">APILocalAbstract</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabase.html">APIMySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseProxy.html">APIMySQLDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLDatabaseSafe.html">APIMySQLDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabase.html">APIMySQLiDatabase</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseProxy.html">APIMySQLiDatabaseProxy</a></li>
+                                                    <li class="class"><a href="../classes/APIMySQLiDatabaseSafe.html">APIMySQLiDatabaseSafe</a></li>
+                                                    <li class="class"><a href="../classes/APIPreload.html">APIPreload</a></li>
+                                                    <li class="class"><a href="../classes/APIPreloadItem.html">APIPreloadItem</a></li>
+                                                    <li class="class"><a href="../classes/APISecurity.html">APISecurity</a></li>
+                                                    <li class="class"><a href="../classes/apiserver.html">apiserver</a></li>
+                                                    <li class="class"><a href="../classes/APISimpleForm.html">APISimpleForm</a></li>
+                                                    <li class="class"><a href="../classes/APITableForm.html">APITableForm</a></li>
+                                                    <li class="class"><a href="../classes/APIThemeForm.html">APIThemeForm</a></li>
+                                                    <li class="class"><a href="../classes/APIUserUtility.html">APIUserUtility</a></li>
+                                                    <li class="class"><a href="../classes/APIUtility.html">APIUtility</a></li>
+                                                    <li class="class"><a href="../classes/Criteria.html">Criteria</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaCompo.html">CriteriaCompo</a></li>
+                                                    <li class="class"><a href="../classes/CriteriaElement.html">CriteriaElement</a></li>
+                                                    <li class="class"><a href="../classes/Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/Db_manager.html">Db_manager</a></li>
+                                                    <li class="class"><a href="../classes/FormDhtmlTextArea.html">FormDhtmlTextArea</a></li>
+                                                    <li class="class"><a href="../classes/FormTextArea.html">FormTextArea</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizer.html">MyTextSanitizer</a></li>
+                                                    <li class="class"><a href="../classes/MyTextSanitizerExtension.html">MyTextSanitizerExtension</a></li>
+                                                    <li class="class"><a href="../classes/MytsCensor.html">MytsCensor</a></li>
+                                                    <li class="class"><a href="../classes/MytsFlash.html">MytsFlash</a></li>
+                                                    <li class="class"><a href="../classes/MytsIframe.html">MytsIframe</a></li>
+                                                    <li class="class"><a href="../classes/MytsImage.html">MytsImage</a></li>
+                                                    <li class="class"><a href="../classes/MytsLi.html">MytsLi</a></li>
+                                                    <li class="class"><a href="../classes/MytsMms.html">MytsMms</a></li>
+                                                    <li class="class"><a href="../classes/MytsMp3.html">MytsMp3</a></li>
+                                                    <li class="class"><a href="../classes/MytsRtsp.html">MytsRtsp</a></li>
+                                                    <li class="class"><a href="../classes/MytsSoundcloud.html">MytsSoundcloud</a></li>
+                                                    <li class="class"><a href="../classes/MytsSyntaxhighlight.html">MytsSyntaxhighlight</a></li>
+                                                    <li class="class"><a href="../classes/MytsTextfilter.html">MytsTextfilter</a></li>
+                                                    <li class="class"><a href="../classes/MytsUl.html">MytsUl</a></li>
+                                                    <li class="class"><a href="../classes/MytsWiki.html">MytsWiki</a></li>
+                                                    <li class="class"><a href="../classes/MytsWmp.html">MytsWmp</a></li>
+                                                    <li class="class"><a href="../classes/MytsYoutube.html">MytsYoutube</a></li>
+                                                    <li class="class"><a href="../classes/PathStuffController.html">PathStuffController</a></li>
+                                                    <li class="class"><a href="../classes/SqlUtility.html">SqlUtility</a></li>
+                                                    <li class="class"><a href="../classes/TinyMCE.html">TinyMCE</a></li>
+                                                    <li class="class"><a href="../classes/whois.html">whois</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>MyTextSanitizer</h1>
+                    <p><em>Class to &quot;clean up&quot; text for various uses</em></p>
+                    <p><strong>Singleton</strong></p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/MyTextSanitizer.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_loadConfig" class="">loadConfig()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_mergeConfig" class="">mergeConfig()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_getInstance" class="">getInstance()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_getSmileys" class="">getSmileys()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_smiley" class="">smiley()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeClickableCallback01" class="">makeClickableCallback01()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeClickableCallback02" class="">makeClickableCallback02()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeClickableCallback03" class="">makeClickableCallback03()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeClickableCallback04" class="">makeClickableCallback04()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeClickable" class="">makeClickable()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_truncate" class="">truncate()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_apiCodeDecode" class="">apiCodeDecode()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_quoteConv" class="">quoteConv()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_filterXss" class="">filterXss()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_nl2Br" class="">nl2Br()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_addSlashes" class="">addSlashes()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_stripSlashesGPC" class="">stripSlashesGPC()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_htmlSpecialChars" class="">htmlSpecialChars()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_undoHtmlSpecialChars" class="">undoHtmlSpecialChars()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_displayTarea" class="">displayTarea()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_previewTarea" class="">previewTarea()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_censorString" class="deprecated">censorString()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_codePreConv" class="">codePreConv()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_codeConvCallback" class="">codeConvCallback()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_codeConv" class="">codeConv()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_executeExtensions" class="">executeExtensions()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_loadExtension" class="">loadExtension()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_executeExtension" class="">executeExtension()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_textFilter" class="">textFilter()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_codeSanitizer" class="">codeSanitizer()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_sanitizeForDisplay" class="">sanitizeForDisplay()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_sanitizeForPreview" class="">sanitizeForPreview()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTboxData4Save" class="">makeTboxData4Save()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTboxData4Show" class="">makeTboxData4Show()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTboxData4Edit" class="">makeTboxData4Edit()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTboxData4Preview" class="">makeTboxData4Preview()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTboxData4PreviewInForm" class="">makeTboxData4PreviewInForm()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4Save" class="">makeTareaData4Save()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4Show" class="">makeTareaData4Show()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4Edit" class="">makeTareaData4Edit()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4Preview" class="">makeTareaData4Preview()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4PreviewInForm" class="">makeTareaData4PreviewInForm()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_makeTareaData4InsideQuotes" class="">makeTareaData4InsideQuotes()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_oopsStripSlashesGPC" class="">oopsStripSlashesGPC()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_oopsStripSlashesRT" class="">oopsStripSlashesRT()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_oopsAddSlashes" class="">oopsAddSlashes()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_oopsHtmlSpecialChars" class="">oopsHtmlSpecialChars()</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#method_oopsNl2Br" class="">oopsNl2Br()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/MyTextSanitizer.html#property_smileys" class="">$smileys</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_censorConf" class="">$censorConf</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_text" class="">$text</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_patterns" class="">$patterns</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_replacements" class="">$replacements</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_callbackPatterns" class="">$callbackPatterns</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_callbacks" class="">$callbacks</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_path_basic" class="">$path_basic</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_path_plugin" class="">$path_plugin</a><br />
+                                                                    <a href="../classes/MyTextSanitizer.html#property_config" class="">$config</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/class.module.textsanitizer.html"><div class="path-wrapper">class/module.textsanitizer.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">kernel\core</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\MyTextSanitizer</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                                                        
+                                                                                                        
+                                                                                                        
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                copyright
+                            </th>
+                            <td>
+                                                                                                        <p>(c) 2000-2016 API Project - www.api.org</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_smileys" name="property_smileys" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$smileys</h3>
+                <pre class="signature">$smileys : mixed|string|int</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|string|int
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_censorConf" name="property_censorConf" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$censorConf</h3>
+                <pre class="signature">$censorConf : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_text" name="property_text" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$text</h3>
+                <pre class="signature">$text : \holding</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \holding
+                &mdash; reference to text                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_patterns" name="property_patterns" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$patterns</h3>
+                <pre class="signature">$patterns : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_replacements" name="property_replacements" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$replacements</h3>
+                <pre class="signature">$replacements : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_callbackPatterns" name="property_callbackPatterns" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$callbackPatterns</h3>
+                <pre class="signature">$callbackPatterns : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_callbacks" name="property_callbacks" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$callbacks</h3>
+                <pre class="signature">$callbacks : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_path_basic" name="property_path_basic" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$path_basic</h3>
+                <pre class="signature">$path_basic : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_path_plugin" name="property_path_plugin" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$path_plugin</h3>
+                <pre class="signature">$path_plugin : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_config" name="property_config" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$config</h3>
+                <pre class="signature">$config : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em>Constructor of this class</em></p>
+                <p>Gets allowed html tags from admin config settings
+<br> should not be allowed since nl2br will be used
+when storing data.</p>
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadConfig" name="method_loadConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loadConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadConfig(  <span class="argument">name = \null</span>) : mixed|string|int</pre>
+                <p><em>Enter description here.</em></p>
+                <p>..</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_mergeConfig" name="method_mergeConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">mergeConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">mergeConfig(mixed|string|int  <span class="argument">config_default</span>, mixed|string|int  <span class="argument">config_custom</span>) : \unknown</pre>
+                <p><em>Enter description here.</em></p>
+                <p>..</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed|string|int</td>
+                                <td>config_default </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed|string|int</td>
+                                <td>config_custom </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \unknown
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInstance" name="method_getInstance" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInstance()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInstance() : </pre>
+                <p><em>Access the only instance of this class</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            staticvar
+                        </th>
+                        <td>
+                                                                                            <p>object</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSmileys" name="method_getSmileys" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSmileys()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSmileys(  <span class="argument">isAll = \true</span>) : mixed|string|int</pre>
+                <p><em>Get the smileys</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>isAll </td>
+                                <td><p>TRUE for all smileys, FALSE for smileys with display = 1</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string|int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_smiley" name="method_smiley" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">smiley()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">smiley(  <span class="argument">message</span>) : </pre>
+                <p><em>Replace emoticons in the message with smiley images</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeClickableCallback01" name="method_makeClickableCallback01" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeClickableCallback01()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeClickableCallback01( <span class="argument">match</span>) : </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>match </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeClickableCallback02" name="method_makeClickableCallback02" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeClickableCallback02()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeClickableCallback02( <span class="argument">match</span>) : </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>match </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeClickableCallback03" name="method_makeClickableCallback03" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeClickableCallback03()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeClickableCallback03( <span class="argument">match</span>) : </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>match </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeClickableCallback04" name="method_makeClickableCallback04" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeClickableCallback04()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeClickableCallback04( <span class="argument">match</span>) : </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>match </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeClickable" name="method_makeClickable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeClickable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeClickable(  <span class="argument">text</span>) : </pre>
+                <p><em>Make links in the text clickable</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_truncate" name="method_truncate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">truncate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">truncate(  <span class="argument">text</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::truncate()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_apiCodeDecode" name="method_apiCodeDecode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">apiCodeDecode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">apiCodeDecode(  <span class="argument">text</span>, bool|int  <span class="argument">allowimage = 1</span>) : </pre>
+                <p><em>Replace APICodes with their equivalent HTML formatting</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>allowimage </td>
+                                <td><p>Allow images in the text?
+On FALSE, uses links to images.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quoteConv" name="method_quoteConv" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quoteConv()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quoteConv(  <span class="argument">text</span>) : </pre>
+                <p><em>Convert quote tags</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterXss" name="method_filterXss" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filterXss()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterXss( <span class="argument">text</span>) : </pre>
+                <p><em>A quick solution for filtering XSS scripts</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            TODO
+                        </th>
+                        <td>
+                                                                                            <p>: To be improved</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_nl2Br" name="method_nl2Br" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">nl2Br()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">nl2Br(  <span class="argument">text</span>) : </pre>
+                <p><em>Convert linebreaks to &lt;br&gt; tags</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addSlashes" name="method_addSlashes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addSlashes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addSlashes(  <span class="argument">text</span>) : </pre>
+                <p><em>Add slashes to the text if magic_quotes_gpc is turned off.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_stripSlashesGPC" name="method_stripSlashesGPC" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">stripSlashesGPC()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">stripSlashesGPC(  <span class="argument">text</span>) : </pre>
+                <p><em>if magic_quotes_gpc is on, stirip back slashes</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_htmlSpecialChars" name="method_htmlSpecialChars" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">htmlSpecialChars()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">htmlSpecialChars(  <span class="argument">text</span>,   <span class="argument">quote_style = \ENT_QUOTES</span>,   <span class="argument">charset = \null</span>,   <span class="argument">double_encode = \true</span>) : </pre>
+                <p><em>Convert special characters to HTML entities</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td><p>string being converted</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>quote_style </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>charset </td>
+                                <td><p>character set used in conversion</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>double_encode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_undoHtmlSpecialChars" name="method_undoHtmlSpecialChars" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">undoHtmlSpecialChars()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">undoHtmlSpecialChars(  <span class="argument">text</span>) : </pre>
+                <p><em>Reverses {@link htmlSpecialChars()}</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_displayTarea" name="method_displayTarea" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">displayTarea()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">displayTarea(  <span class="argument">text</span>, bool|int  <span class="argument">html</span>, bool|int  <span class="argument">smiley = 1</span>, bool|int  <span class="argument">xcode = 1</span>, bool|int  <span class="argument">image = 1</span>, bool|int  <span class="argument">br = 1</span>) : </pre>
+                <p><em>Filters textarea form data in DB for display</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>html </td>
+                                <td><p>allow html?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>smiley </td>
+                                <td><p>allow smileys?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>xcode </td>
+                                <td><p>allow apicode?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>image </td>
+                                <td><p>allow inline images?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>br </td>
+                                <td><p>convert linebreaks?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_previewTarea" name="method_previewTarea" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">previewTarea()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">previewTarea(  <span class="argument">text</span>, bool|int  <span class="argument">html</span>, bool|int  <span class="argument">smiley = 1</span>, bool|int  <span class="argument">xcode = 1</span>, bool|int  <span class="argument">image = 1</span>, bool|int  <span class="argument">br = 1</span>) : </pre>
+                <p><em>Filters textarea form data submitted for preview</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>html </td>
+                                <td><p>allow html?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>smiley </td>
+                                <td><p>allow smileys?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>xcode </td>
+                                <td><p>allow apicode?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>image </td>
+                                <td><p>allow inline images?</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>bool|int</td>
+                                <td>br </td>
+                                <td><p>convert linebreaks?</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_censorString" name="method_censorString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">censorString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">censorString(  <span class="argument">text</span>) : </pre>
+                <p><em>Replaces banned words in a string with their replacements</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_codePreConv" name="method_codePreConv" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">codePreConv()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">codePreConv(  <span class="argument">text</span>,   <span class="argument">xcode = 1</span>) : </pre>
+                <p><em>MyTextSanitizer::codePreConv()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>xcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_codeConvCallback" name="method_codeConvCallback" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">codeConvCallback()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">codeConvCallback( <span class="argument">match</span>) : </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>match </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_codeConv" name="method_codeConv" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">codeConv()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">codeConv(  <span class="argument">text</span>,   <span class="argument">xcode = 1</span>) : </pre>
+                <p><em>MyTextSanitizer::codeConv()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>xcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_executeExtensions" name="method_executeExtensions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">executeExtensions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">executeExtensions() : </pre>
+                <p><em>MyTextSanitizer::executeExtensions()</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadExtension" name="method_loadExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loadExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadExtension(  <span class="argument">name</span>) : bool|null</pre>
+                <p><em>MyTextSanitizer::loadExtension()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    bool|null
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_executeExtension" name="method_executeExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">executeExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">executeExtension(  <span class="argument">name</span>) : </pre>
+                <p><em>MyTextSanitizer::executeExtension()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_textFilter" name="method_textFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">textFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">textFilter(  <span class="argument">text</span>,   <span class="argument">force = \false</span>) : </pre>
+                <p><em>Filter out possible malicious text
+kses project at SF could be a good solution to check</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td><p>text to filter</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>force </td>
+                                <td><p>force filtering</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; <p>filtered text</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_codeSanitizer" name="method_codeSanitizer" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">codeSanitizer()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">codeSanitizer(  <span class="argument">str</span>,   <span class="argument">image = 1</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::codeSanitizer()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>str </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>image </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitizeForDisplay" name="method_sanitizeForDisplay" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitizeForDisplay()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitizeForDisplay(  <span class="argument">text</span>,   <span class="argument">allowhtml</span>,   <span class="argument">smiley = 1</span>,   <span class="argument">bbcode = 1</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::sanitizeForDisplay()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>allowhtml </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>bbcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitizeForPreview" name="method_sanitizeForPreview" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitizeForPreview()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitizeForPreview(  <span class="argument">text</span>,   <span class="argument">allowhtml</span>,   <span class="argument">smiley = 1</span>,   <span class="argument">bbcode = 1</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::sanitizeForPreview()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>allowhtml </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>bbcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTboxData4Save" name="method_makeTboxData4Save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTboxData4Save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTboxData4Save(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTboxData4Save()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTboxData4Show" name="method_makeTboxData4Show" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTboxData4Show()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTboxData4Show(  <span class="argument">text</span>,   <span class="argument">smiley</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::makeTboxData4Show()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTboxData4Edit" name="method_makeTboxData4Edit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTboxData4Edit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTboxData4Edit(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTboxData4Edit()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTboxData4Preview" name="method_makeTboxData4Preview" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTboxData4Preview()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTboxData4Preview(  <span class="argument">text</span>,   <span class="argument">smiley</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::makeTboxData4Preview()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTboxData4PreviewInForm" name="method_makeTboxData4PreviewInForm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTboxData4PreviewInForm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTboxData4PreviewInForm(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTboxData4PreviewInForm()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4Save" name="method_makeTareaData4Save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4Save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4Save(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTareaData4Save()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4Show" name="method_makeTareaData4Show" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4Show()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4Show(  <span class="argument">text</span>,   <span class="argument">html = 1</span>,   <span class="argument">smiley = 1</span>,   <span class="argument">xcode = 1</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::makeTareaData4Show()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>html </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>xcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4Edit" name="method_makeTareaData4Edit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4Edit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4Edit(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTareaData4Edit()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4Preview" name="method_makeTareaData4Preview" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4Preview()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4Preview(  <span class="argument">text</span>,   <span class="argument">html = 1</span>,   <span class="argument">smiley = 1</span>,   <span class="argument">xcode = 1</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::makeTareaData4Preview()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>html </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>smiley </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>xcode </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4PreviewInForm" name="method_makeTareaData4PreviewInForm" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4PreviewInForm()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4PreviewInForm(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTareaData4PreviewInForm()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeTareaData4InsideQuotes" name="method_makeTareaData4InsideQuotes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeTareaData4InsideQuotes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">makeTareaData4InsideQuotes(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::makeTareaData4InsideQuotes()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_oopsStripSlashesGPC" name="method_oopsStripSlashesGPC" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">oopsStripSlashesGPC()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">oopsStripSlashesGPC(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::oopsStripSlashesGPC()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_oopsStripSlashesRT" name="method_oopsStripSlashesRT" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">oopsStripSlashesRT()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">oopsStripSlashesRT(  <span class="argument">text</span>) : mixed|string</pre>
+                <p><em>MyTextSanitizer::oopsStripSlashesRT()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_oopsAddSlashes" name="method_oopsAddSlashes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">oopsAddSlashes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">oopsAddSlashes(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::oopsAddSlashes()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_oopsHtmlSpecialChars" name="method_oopsHtmlSpecialChars" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">oopsHtmlSpecialChars()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">oopsHtmlSpecialChars(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::oopsHtmlSpecialChars()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_oopsNl2Br" name="method_oopsNl2Br" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">oopsNl2Br()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">oopsNl2Br(  <span class="argument">text</span>) : </pre>
+                <p><em>MyTextSanitizer::oopsNl2Br()</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>text </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MyTextSanitizer.html"><div class="path-wrapper">\MyTextSanitizer</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">module.textsanitizer.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/class/module.textsanitizer.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 10th, 2018 at 10:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
