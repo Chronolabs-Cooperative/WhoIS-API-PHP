@@ -41,5 +41,5 @@ defined('API_ROOT_PATH') || exit('Restricted access');
 /**
  *  Define API version
  */
-define('API_VERSION', 'WhoIS REST Services API 2.2.14');
+define('API_VERSION', 'WhoIS REST Services API 2.3.0');
 define('API_TYPE', 'whois-api');
